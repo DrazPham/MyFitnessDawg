@@ -1,0 +1,23 @@
+# TOML (Tom’s Obvious, Minimal Language) là một định dạng văn bản đơn giản, dễ đọc, được thiết kế để thay thế cho JSON hoặc YAML trong một số trường hợp.
+
+[general]
+name = "MyFitnessDawg"
+version = "1.0.0"
+python_version = "3.13.5(64-bit)"
+website = ""
+author = "DrazPham"
+
+[database]
+host = ""
+port = 
+user = ""
+password = ""
+
+[bot]
+name = "NutriBot"
+
+[theme]
+base = 'light'
+
+[language]
+base = english
