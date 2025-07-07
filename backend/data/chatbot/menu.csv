@@ -1,0 +1,97 @@
+,name,protein,fat,carbs,calories 
+,Chicken Breast, 31.0g, 3.6g, 0.0g, 165kcal
+,Chicken Wing, 30.5g, 13.5g, 0.0g, 203kcal
+,Chicken Thigh, 23.0g, 14.0g, 0.1g, 214kcal
+,Whole Chicken, 18.0g, 9.0g, 0.0g, 239kcal
+,Chicken Liver, 24.0g, 6.5g, 0.9g, 167kcal
+,Beef Tenderloin, 22.1g, 6.5g, 0.0g, 152kcal
+,Beef Chuck (Shoulder), 25.0g, 19.6g, 0.0g, 277kcal
+,Ground Beef, 26.2g, 17.0g, 0.0g, 276kcal
+,Beef Tongue, 14.9g, 16.1g, 3.7g, 224kcal
+,Beef Liver, 20.4g, 3.6g, 3.9g, 135kcal
+,Pork Shoulder, 17.18 g, 17.99 g, 0 g, 236 kcal
+,Pork Belly, 9.34 g, 53.01 g, 0 g, 518 kcal
+,Pork Spareribs, 17.09 g, 23.6 g, 0 g, 286 kcal
+,Pork Liver, 21.39 g, 3.65 g, 2.47 g, 134 kcal
+,Ground Pork, 16.88 g, 21.19 g, 0 g, 263 kcal
+,Canned Tuna, 24 g, 3 g, 0 g, 128 kcal
+,Squid, 15.6g, 1.4g, 3.1g, 92kcal
+,Tiger Prawn, 20.3g, 0.3g, 0.2g, 99kcal
+,Broccoli, 2.8g, 0.4g, 6.6g, 34kcal
+,Carrot, 0.93g, 0.24g, 9.58g, 41kcal
+,Sweet Potato, 1.57g, 0.05g, 20.12g, 86kcal
+,Potato, 2.0g, 0.1g, 17.0g, 77kcal
+,Pumpkin, 1.0g, 0.1g, 6.5g, 26kcal
+,Loofah, 1.2g, 0.2g, 3.4g, 20kcal
+,Cucumber, 0.7g, 0.1g, 3.6g, 16kcal
+,Lettuce, 1.4g, 0.2g, 2.9g, 15kcal
+,Mustard Greens, 2.7g, 0.2g, 4.7g, 27kcal
+,White Rice (cooked), 2.7g, 0.3g, 28.2g, 130kcal
+,Brown Rice (cooked), 2.5g, 1.1g, 25.9g, 124kcal
+,Vermicelli (rice noodles cooked), 1.5g, 0.2g, 31.0g, 157kcal
+,Pho Noodles (rice cooked), 2.7g, 0.1g, 28.0g, 109kcal
+,Instant Noodles (cooked), 5.0g, 3.8g, 25.0g, 138kcal
+,Sandwich Bread (white), 8.0g, 2.5g, 49.0g, 265kcal
+,Oatmeal (cooked), 2.4g, 1.4g, 12.0g, 68kcal
+,Tomato, 0.9g, 0.2g, 3.9g, 18kcal
+,Tofu, 8.1g, 4.8g, 1.9g, 76 kcal
+,Chicken Egg, 12.6g, 9.5g, 1.1g, 143 kcal
+,Duck Egg, 12.81g, 13.77g, 1.45g, 185 kcal
+,Milk (unsweetened), 3.4g, 3.3g, 4.8g, 61 kcal
+,Greek Yogurt, 9g, 5g, 4g, 97 kcal
+,Mozzarella Cheese, 20g, 16.5g, 4.6g, 246 kcal
+,Whey Protein Powder, 75g, 8g, 10g, 400 kcal
+,Walnut, 15.2g, 65.2g, 13.7g, 654 kcal
+,Almond, 21.2g, 49.9g, 21.6g, 579 kcal
+,Peanut Butter, 25g, 50g, 20g, 588 kcal
+,Olive Oil, 0g, 100g, 0g, 884 kcal
+,Duck Breast, 19.0g, 8.3g, 0.0g, 185kcal
+,Chicken Skin, 13.3g, 32.4g, 0.0g, 349kcal
+,Chicken Meatball, 12.7g, 14.8g, 6.2g, 218kcal
+,Catfish, 15.0g, 1.4g, 0.0g, 76kcal
+,Mackerel, 18.6g, 18.0g, 0.0g, 205kcal
+,Snakehead Fish, 15.0g, 1.4g, 0.0g, 76kcal
+,Clam, 11.0g, 1.0g, 5.1g, 74kcal
+,Scallop, 12.1g, 0.5g, 3.2g, 69kcal
+,Oyster, 9.5g, 2.5g, 4.9g, 68kcal
+,Crab, 18.1g, 1.5g, 0.0g, 84kcal
+,Octopus, 14.9g, 1.0g, 3.1g, 82kcal
+,Canned Sardine, 25.4g, 11.5g, 0.0g, 208kcal
+,Dried Shrimp, 72.0g, 2.2g, 13.0g, 253kcal
+,Quail Egg, 13.05g, 11.09g, 0.41g, 158kcal
+,Peanuts, 25.8g, 49.24g, 16.13g, 567kcal
+,Cashew Nuts, 18.22g, 43.85g, 30.19g, 553kcal
+,Chia Seeds, 16.5g, 30.7g, 42.1g, 486kcal
+,Flaxseed, 18.3g, 42.2g, 28.9g, 534kcal
+,Avocado, 2.0g, 14.7g, 8.5g, 160kcal
+,Coconut Oil, 0.0g, 99.2g, 0.0g, 892kcal
+,Soybean Oil, 0.0g, 100.0g, 0.0g, 884kcal
+,Rice Bran Oil, 0.0g, 100.0g, 0.0g, 884kcal
+,Sesame Oil, 0.0g, 100.0g, 0.0g, 884kcal
+,Rice Paper, 6.1g, 0.4g, 82.2g, 353kcal
+,Glass Noodles, 0.7g, 0.1g, 88.2g, 351kcal
+,Whole Wheat Pasta, 14.63g, 1.4g, 75.03g, 348kcal
+,Granola Cereal, 14.7g, 24.5g, 52.7g, 490kcal
+,Glutinous Rice, 2.4g, 0.2g, 28.2g, 130kcal
+,Corn, 3.4g, 1.5g, 19.0g, 96kcal
+,Mung Bean (cooked), 7.0g, 0.4g, 19.2g, 105kcal
+,Black Bean (cooked), 8.9g, 0.5g, 23.7g, 132kcal
+,Red Bean (cooked), 7.5g, 0.1g, 25.0g, 128kcal
+,Soybean (cooked), 16.6g, 9.0g, 9.9g, 173kcal
+,Pork Roll (Chả Lụa), 10.0g, 17.0g, 3.0g, 230kcal
+,Pork Sausage (Xúc xích), 13.0g, 25.0g, 1.0g, 300kcal
+,Chinese Sausage (Lạp xưởng), 13.1g, 44.6g, 9.8g, 520kcal
+,Fermented Pork (Nem Chua), 15.0g, 20.0g, 3.0g, 250kcal
+,Fish Cake (Chả Cá), 13.0g, 4.0g, 6.0g, 110kcal
+,Water Spinach, 2.6g, 0.2g, 3.1g, 19kcal
+,Amaranth Leaves, 2.0g, 0.3g, 4.1g, 23kcal
+,Malabar Spinach, 1.0g, 0.3g, 2.0g, 23kcal
+,Spinach, 2.8g, 0.4g, 6.6g, 34kcal
+,Celery, 0.7g, 0.1g, 3.6g, 16kcal
+,Asparagus, 2.2g, 0.1g, 3.9g, 20kcal
+,Beetroot, 1.6g, 0.2g, 9.6g, 43kcal
+,Shiitake Mushroom, 2.4g, 0.2g, 8.2g, 44kcal
+,Enoki Mushroom, 2.7g, 0.4g, 6.96g, 42kcal
+,Beef Jerky, 33.0g, 7.8g, 12.4g, 410kcal
+,Chicken Floss, 30.0g, 18.0g, 12.0g, 380kcal
+,Dried Fish, 56.0g, 11.0g, 0.0g, 330kcal
