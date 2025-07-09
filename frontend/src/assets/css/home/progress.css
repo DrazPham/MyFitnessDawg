@@ -1,0 +1,23 @@
+.progress-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  margin: 0 auto;
+}
+
+.progress-value {
+  position: absolute;
+}
+
+input[type="number"] {
+  margin-top: 20px;
+  font-size: 18px;
+  width: 80px;
+}

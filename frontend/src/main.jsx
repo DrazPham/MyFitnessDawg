@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-// fonts
-// import "./assets/css/fontawesome.css";
-// import "./assets/css/icomoon.css";
+// fonts dùng font.js hoặc boostrap cx đc
+import "./assets/css/fontawesome.css";
+import "./assets/css/icomoon.css";
 // import "./font.js"
 
 // main css
-// import "./assets/css/app.css";
-// import "./assets/css/main.css";
+import "./assets/css/app.css";
+import "./assets/css/main.css";
+import "./assets/css/index.css";
+
 
 // React Router Dom
 import { RouterProvider } from "react-router-dom";
@@ -19,5 +21,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     	<RouterProvider router={router} />
 	</React.StrictMode>
 );
-
-console.log("ho")

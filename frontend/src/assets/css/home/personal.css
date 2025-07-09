@@ -1,0 +1,40 @@
+.personal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.personal img{
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;
+    width: 5em;
+    height: 5em;
+}
+.daycount{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+.daycount div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.daycount p {
+    margin: 0px;
+    font-size: 32px; 
+    font-weight: 600;
+    line-height: 40px; 
+    letter-spacing: -0.4px; 
+}
+
+.daycount div p {
+    margin: 0px;
+    font-size: 14px; 
+    line-height: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+}

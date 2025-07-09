@@ -1,0 +1,43 @@
+.home .tracking{
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: rgba(8, 42, 107, 0.1) 0px 0px 12px 0px;
+    border-radius: 8px;
+}
+.home .tracker{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.home .detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.tracking h1{
+    font-size: 36px;
+}
+.detail h1{
+    font-size: 24px;
+    font-weight: 1;
+}
+.tracking p{
+    font-size: 24px;
+    margin: 30px 0;
+}
+.tracking .FoodMacros{
+    font-weight: bold;
+    text-align: center;
+}
+.tracking .remainingAmount{
+    text-align: center;
+}
+.macrostracker{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}

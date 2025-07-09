@@ -1,9 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import LayoutOne from "components/layout/LayoutOne.jsx";
 import Layout from "components/layout/index.jsx";
-// import ErrorPage from "src/error-page";
 import Home from "page/Home";
 import Chat from "page/Chat";
+import Track from "page/Track";
+import Exercise from "page/Exercise";
+import Report from "page/Report";
+import Blog from "page/blog";
+import PrivacyPolicy from "page/privacypolicy";
+import Login from "page/login";
+import Signup from "page/signup"
+
 // import ContactUs from "page/contact/ContactUs";
 // import BlogGridPage from "page/blog/BlogGridPage.jsx";
 // import SingleBlogPage from "page/blog/SingleBlog.jsx";
@@ -32,24 +39,35 @@ export const router = createBrowserRouter([
 					{
 						path: "/chat",
 						element: <Chat />,
-					}
-					// {
-					// 	path: "/contact-us",
-					// 	element: <ContactUs />,
-					// },
-					// {
-					// 	path: "/events",
-					// 	element: <Events />,
-					// },
-					// {
-					// 	path: "/faq",
-					// 	element: <Faq />,
-					// },
-
-					// {
-					// 	path: "/testimonial",
-					// 	element: <TestimonialPage />,
-					// },
+					},
+					{
+						path: "/track",
+						element: <Track />,
+					},
+					{
+						path: "/exercise",
+						element: <Exercise />,
+					},
+					{
+						path: "/report",
+						element: <Report />,
+					},
+					{
+						path: "/blog",
+						element: <Blog />,
+					},
+					{
+						path: "/privacypolicy",
+						element: <PrivacyPolicy />,
+					},
+					{
+						path: "/login",
+						element: <Login />,
+					},
+					{
+						path: "/signup",
+						element: <Signup />,
+					},
 					// {
 					// 	path: "/blog/:id",
 					// 	element: <SingleBlogPage />,
@@ -62,10 +80,7 @@ export const router = createBrowserRouter([
 					// 	path: "/single-team",
 					// 	element: <SingleTeam />,
 					// },
-					// {
-					// 	path: "/moments",
-					// 	element: <Moments />,
-					// },
+
 					// {
 					// 	path: "/single-portfolio",
 					// 	element: <MomentsDetail />,

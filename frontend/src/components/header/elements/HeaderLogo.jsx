@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "assets/images/logo/logo.png";
+import User from "assets/images/logo/maleuser.png";
 function HeaderLogo() {
 	return (
 		<div className="brand-logo">

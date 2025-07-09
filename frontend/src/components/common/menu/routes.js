@@ -1,24 +1,40 @@
 export const routes = [
 	{
 		title: "Home",
-		href: "home",
+		href: "",
 	},
 	{
 		title: "Chat",
 		href: "Chat",
 	},
-	// {
-	// 	title: "Câu chuyện từ dự án",
-	// 	href: "moments",
-	// },
-	// {
-	// 	title: "Bài viết",
-	// 	href: "blog-grid",
-	// },
-	// {
-	// 	title: "Các sự kiện",
-	// 	href: "Events",
-	// },
+	{
+		title: "Track",
+		href: "Track",
+	},
+	{
+		title: "Exercise",
+		href: "Exercise",
+	},
+	{
+		title: "Report",
+		href: "Report",
+	},
+	{
+		title: "Blog",
+		href: "Blog",
+	},
+		{
+		title: "Privacy & Policy",
+		href: "PrivacyPolicy",
+	},
+	{
+		title: "Login",
+		href: "Login",
+	},
+		{
+		title: "Signup",
+		href: "Signup",
+	},
 	// {
 	// 	title: "Liên hệ",
 	// 	href: "contact-us",

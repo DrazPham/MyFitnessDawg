@@ -12,49 +12,120 @@ import { useState } from "react";
 import axios from "axios";
 
 function Chat() {
-	const [userInput, setUserInput] = useState("");
-  const [botReply, setBotReply] = useState("");
+	 const [userInput, setUserInput] = useState("");
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const sendMessage = async () => {
-    console.log("📤 Đang gửi request:", userInput);
+    if (!userInput.trim()) return;
+
+    const newUserMessage = { sender: "user", text: userInput };
+    setMessages((prev) => [...prev, newUserMessage]);
     setLoading(true);
+
     try {
       const res = await axios.post("http://127.0.0.1:5050/chat", {
-  prompt: userInput,
-});
+        prompt: userInput,
+      });
 
-      console.log("📥 Phản hồi từ server:", res.data);
-      setBotReply(res.data.reply);
+      const botMessage = { sender: "bot", text: res.data.reply };
+      setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
-  console.error("❌ Lỗi khi gửi request:", error.message);
-  if (error.response) {
-    console.error("📄 Response data:", error.response.data);
-    console.error("📄 Status:", error.response.status);
-  } else if (error.request) {
-    console.error("🛰 Không có phản hồi từ server:", error.request);
-  } else {
-    console.error("💥 Lỗi khác:", error.message);
-  }
-  setBotReply("⚠️ Không thể kết nối đến máy chủ.");
-}}
+      const errorMessage = {
+        sender: "bot",
+        text: "⚠️ Không thể kết nối đến máy chủ.",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+      console.error("Lỗi khi gửi request:", error);
+    }
+
+    setUserInput("");
+    setLoading(false);
+  };
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
-      <h1>NutriBot 🍎</h1>
-      <input
-        value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
-        placeholder="Nhập câu hỏi về dinh dưỡng..."
-        style={{ padding: "0.5rem", width: "300px", marginRight: "1rem" }}
-      />
-      <button onClick={sendMessage} disabled={loading}>
-        {loading ? "Đang gửi..." : "Gửi"}
-      </button>
-      <div style={{ marginTop: "1rem" }}>
-        <strong>Bot:</strong> {botReply}
+    <div
+      style={{
+        maxWidth: "600px",
+        height: "80vh",
+        margin: "auto",
+        border: "1px solid #ccc",
+        borderRadius: "10px",
+        display: "flex",
+        flexDirection: "column",
+        fontFamily: "Arial, sans-serif",
+      }}
+    >
+      <div
+        style={{
+          flex: 1,
+          padding: "1rem",
+          overflowY: "auto",
+          backgroundColor: "#f9f9f9",
+        }}
+      >
+        {messages.map((msg, idx) => (
+          <div
+            key={idx}
+            style={{
+              display: "flex",
+              justifyContent: msg.sender === "user" ? "flex-end" : "flex-start",
+              marginBottom: "0.5rem",
+            }}
+          >
+            <div
+              style={{
+                maxWidth: "70%",
+                padding: "0.75rem 1rem",
+                borderRadius: "15px",
+                backgroundColor: msg.sender === "user" ? "#cce5ff" : "#d4edda",
+                color: "#333",
+                wordWrap: "break-word",
+              }}
+            >
+              {msg.text}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div
+        style={{
+          borderTop: "1px solid #ccc",
+          padding: "0.75rem",
+          display: "flex",
+        }}
+      >
+        <input
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          placeholder="Nhập tin nhắn..."
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          style={{
+            flex: 1,
+            padding: "0.5rem 1rem",
+            fontSize: "1rem",
+            borderRadius: "20px",
+            border: "1px solid #ccc",
+            marginRight: "0.5rem",
+          }}
+        />
+        <button
+          onClick={sendMessage}
+          disabled={loading}
+          style={{
+            padding: "0.5rem 1rem",
+            borderRadius: "20px",
+            backgroundColor: "#28a745",
+            color: "#fff",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          {loading ? "..." : "Gửi"}
+        </button>
       </div>
     </div>
   );
-}
+};
 export default Chat;
