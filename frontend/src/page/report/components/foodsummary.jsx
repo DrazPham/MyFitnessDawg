@@ -20,12 +20,6 @@ const FoodSummaryDashboard = () => (
         count={item.count}
       />
     ))}
-    <div className="footer-card">
-      <h4>More on the way</h4>
-      <p>
-        We're improving our food database every week, so you'll see more insights on your logged foods soon.
-      </p>
-    </div>
   </div>
 );
 

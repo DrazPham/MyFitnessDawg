@@ -1,36 +1,25 @@
-/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 
-import NavItem from "./NavItem";
-// import { routes } from "./routes";
+const Dropdown = ({ label, options }) => {
+  const [selectedOption, setSelectedOption] = useState('');
 
-const Dropdown = ({ route, subRoutes, depthLevel, mobileSubMenu, mobileSubMenuSub, handleSubMenuSub }) => {
-	depthLevel = depthLevel + 1;
+  const handleChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
-	return depthLevel === 1 ? (
-		<ul className={`sub-menu ${mobileSubMenu === route.title ? "active" : ""}`}>
-			{subRoutes.map((route) => (
-				<NavItem
-					key={route.title}
-					route={route}
-					depthLevel={depthLevel}
-					handleSubMenuSub={handleSubMenuSub}
-					mobileSubMenuSub={mobileSubMenuSub}
-				/>
-			))}
-		</ul>
-	) : (
-		<ul className={`sub-menu shape-none ${mobileSubMenuSub === route.title ? "active" : ""}`}>
-			{subRoutes.map((route) => (
-				<NavItem
-					key={route.title}
-					route={route}
-					depthLevel={depthLevel}
-					handleSubMenuSub={handleSubMenuSub}
-					mobileSubMenuSub={mobileSubMenuSub}
-				/>
-			))}
-		</ul>
-	);
+  return (
+    <div>
+      <label htmlFor="dropdown">{label || 'Choose an option:'}</label>
+      <select id="dropdown" value={selectedOption} onChange={handleChange}>
+        <option value="">--Please choose--</option>
+        {options.map((opt, idx) => (
+          <option key={idx} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
 };
 
 export default Dropdown;

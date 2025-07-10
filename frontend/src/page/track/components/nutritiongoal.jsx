@@ -11,16 +11,16 @@ const NutritionGoalsCard = () => {
     Protein: { value: 103, unit: 'g', percentage: '20%' },
   };
 
+  const dropdownOptions = [
+    { label: 'React', value: 'react' },
+    { label: 'Vue', value: 'vue' },
+    { label: 'Angular', value: 'angular' }
+  ];
+
+
   return (
-    <div style={{
-      border: '1px solid #ccc',
-      padding: '16px',
-      borderRadius: '8px',
-      width: '100%',
-      fontFamily: 'sans-serif',
-    }}>
+    <div className = "dailyGoals">
       <h2>Daily Nutrition Goals</h2>
-        {/* <Dropdown /> */}
       {Object.entries(goals).map(([label, data]) => (
         <NutritionItem
           key={label}
@@ -30,10 +30,7 @@ const NutritionGoalsCard = () => {
           percentage={data.percentage}
         />
       ))}
-      <button style={{ marginTop: '12px' }}>Edit Goals</button>
-      <div style={{ marginTop: '8px', fontSize: '12px', color: 'gray' }}>
-        Custom Daily Goals: <span role="img" aria-label="lock">🔒</span> No
-      </div>
+        <Dropdown label="Select your framework:" options={dropdownOptions}  />
     </div>
   );
 };

@@ -11,6 +11,8 @@ import "./assets/css/app.css";
 import "./assets/css/main.css";
 import "./assets/css/index.css";
 
+import "./index"
+
 
 // React Router Dom
 import { RouterProvider } from "react-router-dom";

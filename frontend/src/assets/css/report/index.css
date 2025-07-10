@@ -50,3 +50,15 @@
   margin-right: 12px;
   color: #333;
 }
+.report{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.reportTable{
+  width: 100%;
+}
+
+.dashboard{
+  display: flex;
+}

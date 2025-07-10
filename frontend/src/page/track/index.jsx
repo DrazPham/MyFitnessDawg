@@ -4,7 +4,7 @@ import "assets/css/track/index.css";
 function Track() {
 	return (
 		<main>
-			<div className="wrapper aximo-all-section">
+			<div className="wrapper aximo-all-section track">
                 <NutritionGoalsCard />
 				<MeasurementForm/>
 			</div>

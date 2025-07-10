@@ -2,7 +2,7 @@
 const periods = ['7', '30', '90', '180', '365'];
 
 const ReportingPeriodSelector = ({ selectedPeriod, onSelect }) => (
-  <div>
+  <div className = "periodSelector">
     {periods.map((days) => (
       <button
         key={days}

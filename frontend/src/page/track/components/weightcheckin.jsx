@@ -50,12 +50,12 @@ const MeasurementForm = () => {
         <input type="number" name="hips" value={formData.hips} onChange={handleChange} />
       </label>
 
-      <label>
+      {/* <label>
         Note:
         <textarea name="note" value={formData.note} onChange={handleChange} />
-      </label>
+      </label> */}
 
-      <button type="submit">Save Entry</button>
+      <button type="submit">Save</button>
     </form>
   );
 };
