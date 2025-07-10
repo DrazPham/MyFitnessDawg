@@ -1,6 +1,9 @@
+import PrivacyPolicyAgreement from "./components/privacypolicy"
 function PrivacyPolicy(){
     return(
-        <h1>Privacy Policy</h1>
+        <main>
+            <PrivacyPolicyAgreement/>
+        </main>
     );
 }
 

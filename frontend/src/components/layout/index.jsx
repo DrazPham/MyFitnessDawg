@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
-// import useScrollTop from "../../hooks/useScrollTop";
-// import Preloader from "../common/Preloader";
-// import ScrollToTop from "../common/ScrollToTop";
+import useScrollTop from "hooks/useScrollTop";
+import Preloader from "components/common/Preloader";
+import ScrollToTop from "components/common/ScrollToTop";
 function Layout() {
-	// useScrollTop();
+	useScrollTop();
 	return (
 		<>
-			{/* <Preloader /> */}
+			<Preloader />
 			<Outlet />
-			{/* <ScrollToTop /> */}
+			<ScrollToTop />
 		</>
 	);
 }
