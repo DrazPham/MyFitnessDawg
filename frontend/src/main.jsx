@@ -4,7 +4,10 @@ import ReactDOM from 'react-dom/client';
 // fonts dùng font.js hoặc boostrap cx đc
 import "./assets/css/fontawesome.css";
 import "./assets/css/icomoon.css";
+
 // import "./font.js"
+
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 // main css
 import "./assets/css/app.css";

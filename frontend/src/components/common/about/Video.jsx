@@ -1,21 +1,25 @@
 import { useState } from "react";
-import ModalVideo from "react-modal-video";
 import PlayBtnImg from "assets/images/v1/play-btn.svg";
-import VideoBg from "assets/images/v1/video-bg.png";
 
 function Video() {
 	const [isOpen, setOpen] = useState(false);
 
 	return (
 		<div className="aximo-video-wrap">
-			<img src={VideoBg} alt="VideoBg" />
-			<ModalVideo
-				channel="youtube"
-				youtube={{ autoplay: 0 }}
-				isOpen={isOpen}
-				videoId="Vx2aLNgGoAE"
-				onClose={() => setOpen(false)}
-			/>
+			<iframe
+        src="https://www.youtube.com/embed/Og5xAdC8EUI?si=G5fddYnLosWIxp52"
+        title="Nutrition & Health"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        style={{
+    		position: 'absolute',
+    		top: 0,
+    		left: 0,
+    		width: '100%',
+    		height: '100%'
+        }}
+  		/>
 			<button className="aximo-video-popup play-btn1 video-init" onClick={() => setOpen(true)}>
 				<img src={PlayBtnImg} alt="PlayBtnImg" />
 			</button>
