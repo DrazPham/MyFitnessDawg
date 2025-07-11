@@ -2525,7 +2525,7 @@ header.aximo-header-section.aximo-header7.sticky-menu {
 	transition: all 0.4s ease-in-out;
 	overflow: hidden;
 	color: var(--light-bg2) !important;
-	background-color: var(--orange-bg);
+	background-color: var(--bgcolor4);
 	position: relative;
 	z-index: 0;
 	overflow: hidden;
@@ -10315,7 +10315,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: var(--bgcolor4);
 }
 
 svg{

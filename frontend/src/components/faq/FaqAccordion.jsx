@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "assets/css/base/faq.css"
 const faqItems = [
 	{
 		question: "Is the app free to use?",
@@ -43,27 +43,12 @@ export default function FAQAccordion() {
 						<button
 							className="faq-question"
 							onClick={() => toggleItem(index)}
-							style={{
-								width: "100%",
-								padding: "12px",
-								fontSize: "16px",
-								fontWeight: "bold",
-								background: "#blue",
-								border: "1px solid #ccc",
-								cursor: "pointer",
-							}}
 						>
 							{item.question}
 						</button>
 						{activeIndex === index && (
 							<div
 								className="faq-answer"
-								style={{
-									padding: "12px",
-									background: "#fff",
-									border: "1px solid #ccc",
-									borderTop: "none",
-								}}
 							>
 								{item.answer}
 							</div>

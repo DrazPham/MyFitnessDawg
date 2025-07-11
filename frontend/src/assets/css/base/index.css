@@ -23,6 +23,13 @@
     margin: 2rem 0;
 }
 .base .faq {
-    margin: 2rem auto;
+    margin: 4rem auto;
     width: 60%;
+}
+.base .faq h2{
+    margin: 0 0 1rem 0;
+}
+
+.base .title{
+    margin: 2rem 0 1rem 0;
 }

@@ -6,7 +6,7 @@ function About() {
 	return (
 		<div className="section">
 			<div id="aximo-counter"></div>
-				<div>
+				<div className = "title">
 					<h2>From Meals to Muscle — All in One Place.</h2>
 					<div className="col-lg-4 offset-lg-1 d-flex align-items-center">
 						<p> We listen, adapt, and design with precision — turning client insights into powerful digital solutions.</p>
