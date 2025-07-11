@@ -1,16 +1,16 @@
-// import { initializeApp } from "firebase/app";  
-// import { getFirestore } from "firebase/firestore";  
+import { initializeApp } from "firebase/app";  
+import { getAuth} from "firebase/auth";
+import { getFirestore } from "firebase/firestore";  
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyB4Ow7qB9LWGWX2MfDxXo0XejRZgyFj7f0",
-//   authDomain: "wiseworm-project.firebaseapp.com",
-//   projectId: "wiseworm-project",
-//   storageBucket: "wiseworm-project.appspot.com",
-//   messagingSenderId: "958395661365",
-//   appId: "1:958395661365:web:243b9b55433936aff3457c"
-// };
+const firebaseConfig = {
+  apiKey: "AIzaSyD6W5XcknjxecS1wBgrYhThRdK6gWIfO1Y",
+  authDomain: "myfitnessdawg-project.firebaseapp.com",
+  projectId: "myfitnessdawg-project",
+  storageBucket: "myfitnessdawg-project.firebasestorage.app",
+  messagingSenderId: "91647088596",
+  appId: "1:91647088596:web:ee7804e60fbc6b555ba841"
+};
+const app = initializeApp(firebaseConfig);  
 
-// const app = initializeApp(firebaseConfig);  
-// const db = getFirestore(app);  
-
-// export { db };  
+export const auth = getAuth(app);
+export const db = getFirestore(app);
