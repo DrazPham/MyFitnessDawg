@@ -2,13 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Inter", sans-serif !important;
 }
-
-
-
 /* COLOR DEFINITION */
 :root{
     --bgcolor1: #3674B5;
+    --bgcolor2: #578FCA;
     --bgcolor3: #F5F0CD; 
     --bgcolor4: #FADA7A; 
 }

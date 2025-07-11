@@ -1,7 +1,7 @@
 export const routes = [
 	{
 		title: "Home",
-		href: "",
+		href: "Home",
 	},
 	{
 		title: "Chat",
@@ -23,10 +23,10 @@ export const routes = [
 		title: "Blog",
 		href: "Blog",
 	},
-		{
-		title: "Privacy & Policy",
-		href: "PrivacyPolicy",
-	},
+	// 	{
+	// 	title: "Privacy & Policy",
+	// 	href: "PrivacyPolicy",
+	// },
 	{
 		title: "Login",
 		href: "Login",

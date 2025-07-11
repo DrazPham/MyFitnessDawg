@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useMenu from "hooks/useMenu";
 import Navbar from "components/common/menu/Navbar";
-import HeaderButton from "./HeaderButton";
+import { Link } from "react-router-dom";
 import HeaderLogo from "./HeaderLogo";
 function HeaderNavbar(){
     const {
@@ -32,6 +32,9 @@ function HeaderNavbar(){
 							handleSubMenuSub={handleSubMenuSub}
 							menuTitle={menuTitle}
 						/>
+					</div>
+					<div>
+						<Link to="/" style = {{color:"white",fontWeight:"bold"}}>Sign Out</Link>
 					</div>
 					<div className="mobile-menu-trigger light" onClick={() => setToggleMenu(true)}>
 						<span></span>

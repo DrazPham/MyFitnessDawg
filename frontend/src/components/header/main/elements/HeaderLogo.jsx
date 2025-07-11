@@ -4,7 +4,7 @@ import User from "assets/images/logo/maleuser.png";
 function HeaderLogo() {
 	return (
 		<div className="brand-logo">
-			<Link to="/">
+			<Link to="/Home">
 				<img src={Logo} alt="Logo" className="light-version-logo" style={{maxHeight:"50px"}}/>
 				{/* <h2 style={{
 					color: "rgb(44, 97, 209)",

@@ -1,5 +1,4 @@
 import FooterCopyright from "./elements/FooterCopyright";
-import FooterMain from "./elements/FooterMain"
 import "assets/css/footer/index.css";
 function Footer() {
 	return (
