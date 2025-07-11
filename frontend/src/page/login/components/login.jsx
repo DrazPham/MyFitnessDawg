@@ -1,89 +1,46 @@
 import React, { useState } from 'react';
+import 'assets/css/login-signup/index.css';
 
 function LoginPage() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleLogin = () => {
-    console.log('Logging in with', username, password);
-  };
-
-  const toggleShowPassword = () => {
-    setShowPassword((prev) => !prev);
-  };
+  const [isSignUpActive, setIsSignUpActive] = useState(false);
 
   return (
-    <div style={styles.container}>
-      <h2>Login</h2>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        style={styles.input}
-      />
-      <div style={styles.passwordWrapper}>
-        <input
-          type={showPassword ? 'text' : 'password'}
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={styles.passwordInput}
-        />
-        <span onClick={toggleShowPassword} style={styles.eye}>
-          {showPassword ? '🙈' : '👁️'}
-        </span>
+    <div className={`LogInContainer ${isSignUpActive ? 'right-panel-active' : ''}`} id="LogInContainer">
+      <div className="form-container sign-up-container">
+        <form action="#">
+          <h1>Fresh Start!</h1>
+          <input type="text" placeholder="Name" />
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="Password" />
+          <button type="button">Hop In!</button>
+        </form>
       </div>
-      <button onClick={handleLogin} style={styles.button}>Login</button>
+
+      <div className="form-container sign-in-container">
+        <form action="#">
+          <h1>Welcome Back!</h1>
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="Password" />
+          <button type="button">Let's go</button>
+        </form>
+      </div>
+
+      <div className="overlay-container">
+        <div className="overlay">
+          <div className="overlay-panel overlay-left">
+            <h1>Back on Track</h1>
+            <p>Got an account? Let's reconnect—log in now!</p>
+            <button className="ghost" onClick={() => setIsSignUpActive(false)}>Jump Back In</button>
+          </div>
+          <div className="overlay-panel overlay-right">
+            <h1>Hey there!</h1>
+            <p>Jump into your health journey—just fill in your details to begin.</p>
+            <button className="ghost" onClick={() => setIsSignUpActive(true)}>Become a Tracker</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    width: '300px',
-    margin: '100px auto',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    textAlign: 'center',
-    fontFamily: 'Arial, sans-serif'
-  },
-  input: {
-    width: '100%',
-    padding: '10px',
-    margin: '8px 0',
-    borderRadius: '4px',
-    border: '1px solid #ccc'
-  },
-  passwordWrapper: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: '8px'
-  },
-  passwordInput: {
-    width: '100%',
-    padding: '10px',
-    borderRadius: '4px',
-    border: '1px solid #ccc'
-  },
-  eye: {
-    position: 'absolute',
-    right: '10px',
-    cursor: 'pointer',
-    fontSize: '18px'
-  },
-  button: {
-    width: '100%',
-    padding: '10px',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer'
-  }
-};
 
 export default LoginPage;

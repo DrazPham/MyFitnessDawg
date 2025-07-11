@@ -407,12 +407,6 @@ h6,
 	margin: 0;
 }
 
-h1,
-.h1 {
-	font-size: 104px;
-	letter-spacing: -1px;
-	line-height: 1em;
-}
 @media (max-width: 1400px) {
 	h1,
 	.h1 {
