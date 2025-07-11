@@ -33,7 +33,6 @@ function HeaderNavbar(){
 							menuTitle={menuTitle}
 						/>
 					</div>
-					<HeaderButton />
 					<div className="mobile-menu-trigger light" onClick={() => setToggleMenu(true)}>
 						<span></span>
 					</div>

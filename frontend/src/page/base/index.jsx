@@ -1,18 +1,18 @@
-// import Personal from "./components/personal";
-// import CaloriesTracking from "./components/caloriestracking";
-// import About from "src/components/common/about/index.jsx";
+import React from 'react';
+import FitnessBanner from './components/FitnessBanner';
+
+import About from "src/components/common/about/index.jsx";
 import FaqAccordion from "src/components/faq/FaqAccordion.jsx";
-import AutoSlider from "src/components/common/auto-slider/index.jsx";
 
 import "assets/css/base/index.css";
 
 function Base() {
 	return (
-		<main>
+		<main style={{"margin":"0"}}>
+			<FitnessBanner/>
 			<div className="wrapper aximo-all-section base">
+				<About/>
 				<FaqAccordion/>
-				<AutoSlider/>
-				<h1>Base</h1>
 			</div>
 		</main>
 	);

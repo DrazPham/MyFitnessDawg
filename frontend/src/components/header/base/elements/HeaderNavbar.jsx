@@ -22,7 +22,7 @@ function HeaderNavbar(){
 					<HeaderLogo />
 					<div className="menu-block-wrapper">
 					</div>
-					<HeaderButton />
+					<HeaderButton Title = "Get Started" />
 				</nav>
 			</div>
     )
