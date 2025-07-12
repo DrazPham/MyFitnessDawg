@@ -9,11 +9,11 @@ import Track from "page/Track";
 import Exercise from "page/Exercise";
 import Report from "page/Report";
 import PrivacyPolicy from "page/privacypolicy";
-import Login from "page/login";
-import Signup from "page/signup"
+import Account from "page/account";
 import ErrorPage from "../error-page";
 import Blog from "page/blog";
 import SingleBlogPage from "page/blog/SingleBlog.jsx";
+import UserInfo from "page/userinfo";
 
 export const router = createBrowserRouter([
 	{
@@ -29,12 +29,12 @@ export const router = createBrowserRouter([
 						element: <Base />,
 					},
 					{
-						path: "/login",
-						element: <Login />,
+						path: "/account",
+						element: <Account />,
 					},
 					{
-						path: "/signup",
-						element: <Signup />,
+						path: "/userinfo",
+						element: <UserInfo />,
 					},
 				]
 			},

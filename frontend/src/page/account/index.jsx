@@ -1,4 +1,4 @@
-import LoginPage from "./components/login"
+import LoginPage from "./components/account"
 function Login(){
     return(
     <LoginPage/>

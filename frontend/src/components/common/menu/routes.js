@@ -23,20 +23,4 @@ export const routes = [
 		title: "Blog",
 		href: "Blog",
 	},
-	// 	{
-	// 	title: "Privacy & Policy",
-	// 	href: "PrivacyPolicy",
-	// },
-	{
-		title: "Login",
-		href: "Login",
-	},
-		{
-		title: "Signup",
-		href: "Signup",
-	},
-	// {
-	// 	title: "Liên hệ",
-	// 	href: "contact-us",
-	// },
 ];

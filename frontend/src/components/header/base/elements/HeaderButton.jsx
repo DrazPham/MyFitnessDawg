@@ -7,7 +7,7 @@ function HeaderButton({ Title,route, depthLevel }) {
 		<button className="aximo-default-btn outline-btn pill barger-menu">
       {/* Login button */}
       <Link
-        to="/login"
+        to="/account"
         className="aximo-default-btn outline-btn pill ms-2"
       >
         {Title}
