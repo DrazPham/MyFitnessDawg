@@ -20,7 +20,7 @@ function GridBlogCard({ blog: { id, imagePreview, title, meta } }) {
 					<Link to={`/blog/${id}`}>
 					<h3 className="entry-title">{title}</h3>
 					</Link>
-					<div className="post-date"  style = {{position:"absolute",bottom:"30px"}}>{meta.date}</div>
+					<div className="post-date"  style = {{position:"absolute",bottom:"30px"}}>{meta.timeRead} minutes</div>
 					</div>
 					<Link className="post-read-more" to={`/blog/${id}`} style = {{position:"absolute",bottom:"10px"}}>
 						Read more <img src={ArrayRightImg} alt="Arrow" />

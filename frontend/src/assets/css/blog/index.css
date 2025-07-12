@@ -1,0 +1,24 @@
+.gridblogsection{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+}
+.gridblogcontainer{
+    grid-column: 2/6;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.SingleBlogContainer{
+    width: 60vw;
+    margin: auto;
+}
+.SingleBlogContainer p{
+    color:black;
+}
+
+img:not([src]):not([srcset]),
+img[src=""],
+img[src="broken-link.jpg"] {
+  display: none;
+}

@@ -1,7 +1,7 @@
-import LoginPage from "./components/account"
-function Login(){
+import AccountForm from "./components/account"
+function Account(){
     return(
-    <LoginPage/>
+    <AccountForm/>
     );
 }
-export default Login;
+export default Account;

@@ -2,9 +2,8 @@ import { createContext } from "react";
 import { useState, useEffect } from "react";
 import Carousel from "src/components/common/Carousel";
 import GridBlog from "./components/grid-blog";
-
-// import { collection, getDocs, query,orderBy } from 'firebase/firestore';
-// import { db } from 'fbase/Firebase';
+import { collection, getDocs, query,orderBy } from 'firebase/firestore';
+import { db } from "src/firebase/index.jsx";
 
 const BlogGridContext = createContext([]);
 
@@ -38,44 +37,39 @@ function BlogGridPage() {
 	const [gridBlogData, setGridBlogData] = useState([]);
 	
 	useEffect(() => {
-    const staticBlogData = [
-      {
-        id: '1',
-        title: 'React Carousel Tips',
-        category: 'React',
-        meta: {
-          category: 'React',
-          date: timestampToDateString(1720550400) // Example UNIX timestamp (July 10, 2024)
-        }
-      },
-      {
-        id: '2',
-        title: 'CSS Grid vs Flexbox',
-        category: 'CSS',
-        meta: {
-          category: 'CSS',
-          date: timestampToDateString(1717968000) // Example date
-        }
-      },
-      {
-        id: '3',
-        title: 'Firebase Auth Guide',
-        category: 'Firebase',
-        meta: {
-          category: 'Firebase',
-          date: timestampToDateString(1715385600)
-        }
-      }
-    ];
-
-    setGridBlogData(staticBlogData);
-  }, []);
+		const fetchBlogData = async () => {
+			try {
+				// Create a query with orderBy on 'date'
+				const q = query(collection(db, 'blog'), orderBy('meta.publishedDate', 'desc')); // or 'desc' for newest to oldest				
+				const querySnapshot = await getDocs(q);				
+				const blogs = querySnapshot.docs.map(doc => {
+					const data = doc.data();
+					return {
+						id: doc.id,
+						...data,
+						meta: {
+							publishedDate: timestampToDateString(data.meta.publishedDate.seconds).slice(0,-15),// Assuming Firestore timestamp
+							timeRead: data.meta.timeRead,
+							author:data.meta.author
+						}
+					};
+				});
+	
+				setGridBlogData(blogs);
+				console.log(blogs)
+			} 
+			catch (error) {
+				console.error('Error fetching blog posts:', error);
+			}
+		};
+		fetchBlogData();
+	}, []);
 
 
 	const imageList = [
-    'https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630',
-    'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTmPdLdb_52jNscHnxCz7Bm14D4S1GgDSG0a-AYvU_Xs6esSWfVa2Fe-9MBBI1iSq-YMcyWee70VLA2pxSJ-3XRXAtTCLcbMzVLB_mbHw',
-    'https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630',
+    'https://aylohealth.com/wp-content/uploads/2022/12/10-Healthy-Tips-for-National-Nutrition-Month_Body-Image-1024x578.jpeg',
+    'https://www.arizonacollege.edu/wp-content/uploads/2022/05/Healtheir-Eating-Tips-1024x773.jpg',
+    'https://elibrecher.co.uk/wp-content/uploads/2021/08/6-simple-steps-to-improve-gut-health.png',
 ];
 
 	return (

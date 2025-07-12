@@ -4,7 +4,7 @@ import { db, auth } from "src/firebase/index.jsx";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import 'assets/css/account/index.css';
 
-function LoginPage() {
+function AccountForm() {
   const navigate = useNavigate();
   const [isSignUpActive, setIsSignUpActive] = useState(false);
   const [formData, setFormData] = useState({
@@ -34,6 +34,8 @@ function LoginPage() {
     try {
       const role = email.includes("admin") ? "admin" : "user";
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      localStorage.setItem('email', formData.email);
+      localStorage.setItem('password', formData.password)
       navigate("/userinfo");
     } catch (error) {
       console.error("Error creating user:", error.code, error.message);
@@ -75,8 +77,8 @@ function LoginPage() {
       <div className="form-container sign-in-container">
         <form onSubmit={handleLogin}>
           <h1>Welcome Back!</h1>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} />
-          <input type="password" name="password" value={formData.password} onChange={handleChange} />
+          <input type="email" name="email" value={formData.email} placeholder="Email" onChange={handleChange} />
+          <input type="password" name="password" value={formData.password}  placeholder="Password" onChange={handleChange} />
           <button type="submit">Let's go</button>
           {notification && <p className="notification">{notification}</p>}
         </form>
@@ -87,7 +89,7 @@ function LoginPage() {
         <div className="overlay">
           <div className="overlay-panel overlay-left">
             <h1>Back on Track</h1>
-            <p>Got an account? Let's reconnect—log in now!</p>
+            <p>Got an Form? Let's reconnect—log in now!</p>
             <button className="ghost" onClick={() => setIsSignUpActive(false)}>Jump Back In</button>
           </div>
           <div className="overlay-panel overlay-right">
@@ -101,4 +103,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default AccountForm;
