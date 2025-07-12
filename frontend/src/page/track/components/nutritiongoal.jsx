@@ -2,13 +2,20 @@
 import React from 'react';
 import NutritionItem from './nutritionitems';
 import Dropdown from 'src/components/common/menu/Dropdown.jsx'
+import { useContext } from "react";
+import { userInfoContext } from "../index";
+
 
 const NutritionGoalsCard = () => {
+
+  const userInfoData = useContext(userInfoContext);
+	
+
   const goals = {
-    Calories: { value: 2060, unit: '', percentage: null },
-    Carbohydrates: { value: 258, unit: 'g', percentage: '50%' },
-    Fat: { value: 69, unit: 'g', percentage: '30%' },
-    Protein: { value: 103, unit: 'g', percentage: '20%' },
+    // Calories: { value: userInfoData.Calories, unit: '', percentage: null },
+    // Carbohydrates: { value: userInfoData.Macros.carbs, unit: 'g', percentage: '50%' },
+    // Fat: { value: userInfoData.Macros.fat, unit: 'g', percentage: '30%' },
+    // Protein: { value: userInfoData.Macros.protein, unit: 'g', percentage: '20%' },
   };
 
   const dropdownOptions = [
@@ -33,7 +40,7 @@ const NutritionGoalsCard = () => {
           percentage={data.percentage}
         />
       ))}
-        <Dropdown label="Select your framework:" options={dropdownOptions}  />
+        <Dropdown label="Select your activity level:" options={dropdownOptions}  />
     </div>
   );
 };

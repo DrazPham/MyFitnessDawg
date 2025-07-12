@@ -25,30 +25,30 @@ const MeasurementForm = () => {
     <form onSubmit={handleSubmit} className="measurement-form">
       <h2>📝 Body Measurement Tracker</h2>
 
-      <label>
-        Date:
-        <input type="date" name="date" value={formData.date} onChange={handleChange} />
-      </label>
+      <div className="checkInGroup">
+  <label>Date:</label>
+  <input type="date" name="date" value={formData.date} onChange={handleChange} />
+</div>
 
-      <label>
-        Weight (kg):
-        <input type="number" name="weight" value={formData.weight} onChange={handleChange} />
-      </label>
+<div className="checkInGroup">
+  <label>Weight (kg):</label>
+  <input type="number" name="weight" value={formData.weight} onChange={handleChange} />
+</div>
 
-      <label>
-        Neck (cm):
-        <input type="number" name="neck" value={formData.neck} onChange={handleChange} />
-      </label>
+<div className="checkInGroup">
+  <label>Neck (cm):</label>
+  <input type="number" name="neck" value={formData.neck} onChange={handleChange} />
+</div>
 
-      <label>
-        Waist (cm):
-        <input type="number" name="waist" value={formData.waist} onChange={handleChange} />
-      </label>
+<div className="checkInGroup">
+  <label>Waist (cm):</label>
+  <input type="number" name="waist" value={formData.waist} onChange={handleChange} />
+</div>
 
-      <label>
-        Hips (cm):
-        <input type="number" name="hips" value={formData.hips} onChange={handleChange} />
-      </label>
+<div className="checkInGroup">
+  <label>Hips (cm):</label>
+  <input type="number" name="hips" value={formData.hips} onChange={handleChange} />
+</div>
 
       {/* <label>
         Note:

@@ -16,6 +16,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    gap:1rem;
 }
 
 .tracking h1{
@@ -40,4 +41,16 @@
     display: flex;
     width: 100%;
     justify-content: space-around;
+}
+
+.caloriesTrackGroups{
+    display: flex;
+    align-items: center;
+}
+.caloriesTrackGroups h1{
+    font-weight: bold;
+    margin: 0;
+}
+.caloriesTrackGroups p{
+    margin: 0;
 }
