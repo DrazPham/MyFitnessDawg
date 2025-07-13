@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 
-const Dropdown = ({ label, options }) => {
+const Dropdown = ({ label, options, onChange }) => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleChange = (e) => {
-    setSelectedOption(e.target.value);
+    const value = e.target.value;
+    setSelectedOption(value);
+
+    if (onChange) {
+      onChange(value); // 👈 Gọi hàm callback từ cha
+    }
   };
 
   return (

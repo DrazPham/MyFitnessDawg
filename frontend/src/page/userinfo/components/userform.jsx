@@ -139,10 +139,12 @@ function UserForm() {
       const tdee = bmr * activityFactor;
       const calories = calculateCaloriesByGoal(tdee, formData.goal);
       const macros = calculateMacros(calories, formData.goal);
+      const FirstLogIn = new Date().toISOString().split('T')[0];;
 
       try {
         const docRef = await addDoc(collection(db, 'users'), {
   ...formData,
+  FirstLogIn: FirstLogIn,
   BMR: Math.round(bmr),
   TDEE: Math.round(tdee),
   Calories: Math.round(calories),

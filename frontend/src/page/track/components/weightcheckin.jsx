@@ -29,6 +29,7 @@ const handleSubmit = async (e) => {
 
     // Lấy ngày hôm nay theo định dạng YYYY-MM-DD
     const today = new Date().toISOString().split('T')[0];
+    console.log(today)
     
     // Dữ liệu mới
     const newEntry = {

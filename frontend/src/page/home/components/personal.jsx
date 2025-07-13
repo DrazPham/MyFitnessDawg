@@ -1,19 +1,26 @@
 import "assets/css/home/personal.css";
-import User from "assets/images/logo/maleuser.png";
-
+import MaleUser from "assets/images/logo/maleuser.png";
+import FemaleUser from "assets/images/logo/femaleuser.png";
+import { useContext } from "react";
+import { userInfoContext } from "../index";
 
 function Personal(){
+	const userInfoData = useContext(userInfoContext);
+    const getUserImage = (gender) => {
+  return gender === "male" ? MaleUser : FemaleUser;
+    };
     return(
         <div class="personal container">
-            <img src={User} alt="" />
-            <div class = "daycount">
-                <p>2</p>
-                <div>
-                    <p>DAYS</p>
-                    <p>STREAKS</p>
-                </div>
-                
+            <img src={getUserImage(
+                // userInfoData.gender
+                )} alt="" />
+            <div className="personal-right">
+                <p>Started on</p>
+                <p>
+                    {/* {userInfoData.FirstLogIn} */}
+                </p>
             </div>
+
         </div>
     )
 }
