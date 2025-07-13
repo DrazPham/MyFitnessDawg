@@ -5,11 +5,6 @@ import path from 'path'
 export default defineConfig({
   root: '.',
   plugins: [react()],
-  server: {
-    proxy: {
-      '/api': 'http://127.0.0.1:5050',
-    },
-  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'frontend/src'),

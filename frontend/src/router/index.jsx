@@ -13,6 +13,7 @@ import ErrorPage from "../error-page";
 import Blog from "page/blog";
 import SingleBlogPage from "page/blog/SingleBlog.jsx";
 import UserInfo from "page/userinfo";
+import Test from "page/test"
 
 export const router = createBrowserRouter([
 	{
@@ -70,9 +71,14 @@ export const router = createBrowserRouter([
 						element: <ErrorPage />,
 					},
 					{
+						path: "/test",
+						element: <Test />,
+					},
+					{
 						path: "/blog/:id",
 						element: <SingleBlogPage />,
 					},
+
 				],
 			},
 		],
