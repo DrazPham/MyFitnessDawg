@@ -1,5 +1,6 @@
 import NutritionGoalsCard from './components/nutritiongoal';
 import MeasurementForm from './components/weightcheckin';
+import WeightRecord from './components/weightRecord';
 import "assets/css/track/index.css";
 
 
@@ -48,6 +49,7 @@ function Track() {
 			<userInfoContext.Provider value={CaloriesData}>
                 <NutritionGoalsCard />
 				<MeasurementForm/>
+				<WeightRecord/>
 			</userInfoContext.Provider>
 			</div>
 		</main>

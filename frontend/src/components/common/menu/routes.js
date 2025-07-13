@@ -16,10 +16,6 @@ export const routes = [
 		href: "Exercise",
 	},
 	{
-		title: "Report",
-		href: "Report",
-	},
-	{
 		title: "Blog",
 		href: "Blog",
 	},

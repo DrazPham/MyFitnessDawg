@@ -7,7 +7,6 @@ import Home from "page/Home";
 import Chat from "page/Chat";
 import Track from "page/Track";
 import Exercise from "page/Exercise";
-import Report from "page/Report";
 import PrivacyPolicy from "page/privacypolicy";
 import Account from "page/account";
 import ErrorPage from "../error-page";
@@ -57,10 +56,6 @@ export const router = createBrowserRouter([
 					{
 						path: "/exercise",
 						element: <Exercise />,
-					},
-					{
-						path: "/report",
-						element: <Report />,
 					},
 					{
 						path: "/blog",

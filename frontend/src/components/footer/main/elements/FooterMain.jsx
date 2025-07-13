@@ -36,9 +36,6 @@ function FooterMain() {
                   <Link to="/exercise">Exercise</Link>
                 </li>
                 <li>
-                  <Link to="/report">Report</Link>
-                </li>
-                <li>
                   <Link to="/blog">Blog</Link>
                 </li>
                 <li>
