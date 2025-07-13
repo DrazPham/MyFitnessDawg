@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CircularProgress = ({ current, label = "Remaining", goal }) => {
-  const percent = current/goal;
+const CircularProgress = ({ current, label = "Remaining", goal,exercise = 0 }) => {
+  const percent = (goal -(goal - current + exercise))/goal;
   const progressDegrees = percent * 360;
 
   return (
@@ -29,7 +29,7 @@ const CircularProgress = ({ current, label = "Remaining", goal }) => {
         }}
       />
       <div style={{ position: 'absolute', textAlign: 'center' }}>
-        <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{current}</div>
+        <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{goal - current + exercise}</div>
         <div style={{ fontSize: '12px', color: '#555' }}>{label}</div>
       </div>
     </div>

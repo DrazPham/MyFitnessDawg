@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from chatbot import get_reply  # Đảm bảo file chatbot.py tồn tại và có hàm get_reply()
+from exchatbot import get_ex_reply  # Đảm bảo file chatbot.py tồn tại và có hàm get_reply()
 
 app = Flask(__name__)
 CORS(app)  # Cho phép mọi origin – chỉ dùng tạm để debug
@@ -20,9 +21,15 @@ def hello():
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
-    # prompt = data.get("prompt", "")
-    prompt = "Chicken breast"
+    prompt = data.get("prompt", "")
     reply = get_reply(prompt)  # Hàm xử lý chatbot
+    return jsonify({"reply": reply})
+
+@app.route("/exercise", methods=["POST"])
+def track():
+    data = request.get_json()
+    prompt = data.get("prompt", "")
+    reply = get_ex_reply(prompt)  # Hàm xử lý chatbot
     return jsonify({"reply": reply})
 
 if __name__ == "__main__":

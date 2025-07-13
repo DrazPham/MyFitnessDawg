@@ -27,7 +27,7 @@ except Exception:
     initial_bot_message = "Xin chào! Bạn cần hỗ trợ gì?"
 
 # Load menu từ CSV
-menu_path = "data/chatbot/menu.csv"
+menu_path = "data/chatbot/exercise.csv"
 try:
     menu_df = pd.read_csv(menu_path, index_col=0)
 except Exception as e:
@@ -63,44 +63,42 @@ model_name = 'models/text-embedding-004'
 
 
 
-def extract_food_and_gram(prompt):
+def extract_exercise_and_minutes(prompt):
     """
-    Trích xuất tên món ăn và số gram (nếu có) từ prompt.
+    Tách tên bài tập và số phút từ chuỗi nhập. Mặc định 60 phút nếu không có số.
     """
     prompt = prompt.strip().lower()
-    match = re.search(r"(.*?)(?:\s+(\d+(?:\.\d+)?)\s*(?:g|gram|grams)?)?$", prompt)
+    match = re.search(r"(.*?)(?:\s+(\d+(?:\.\d+)?)\s*(?:minutes|minute|m)?)?$", prompt)
     if match:
         name = match.group(1).strip()
-        grams = float(match.group(2)) if match.group(2) else 100.0
-        return name, grams
-    return prompt, 100.0
+        minutes = float(match.group(2)) if match.group(2) else 60
+        return name, minutes
+    return prompt, 60
 
-def get_reply(prompt):
-    name, grams = extract_food_and_gram(prompt)
-    
+def get_ex_reply(prompt):
+    name, minutes = extract_exercise_and_minutes(prompt)
+
+    if 'name' not in menu_df.columns or 'calories' not in menu_df.columns:
+        return "❌ Dữ liệu chưa được chuẩn bị đúng định dạng."
+
     matched = menu_df[menu_df['name'].str.lower() == name]
 
     if not matched.empty:
         row = matched.iloc[0]
-        factor = grams / 100.0
+        factor = minutes / 60
         return (
-            f"Thông tin về {row['name']} (trên {grams}g):\n"
-            f"- Calories: {round(row['calories'] * factor, 1)} kcal\n"
-            f"- Protein: {round(row['protein'] * factor, 1)}g\n"
-            f"- Fat: {round(row['fat'] * factor, 1)}g\n"
-            f"- Carbs: {round(row['carbs'] * factor, 1)}g"
+            f"🔍 Thông tin về bài tập **{row['name']}** trong {minutes} phút:\n"
+            f"- Calories tiêu hao: **{round(row['calories'] * factor, 1)} kcal**\n"
         )
     else:
-        # Gợi ý các tên gần giống hoặc chứa từ khóa
         similar = menu_df[menu_df['name'].str.lower().str.contains(name)]
         if not similar.empty:
             options = "\n".join(f"- {item}" for item in similar['name'].tolist())
-            return f"❓ Không tìm thấy '{name}' chính xác. Bạn có muốn chọn một trong các món sau không?\n{options}"
+            return f"❓ Không tìm thấy bài tập '{name}' chính xác. Có thể bạn muốn chọn một trong các bài sau:\n{options}"
         else:
-            # Nếu không có từ khóa nào trùng, thử dùng gần giống (fuzzy)
             all_names = menu_df['name'].str.lower().tolist()
             close_matches = difflib.get_close_matches(name, all_names, n=5, cutoff=0.5)
             if close_matches:
                 suggestions = "\n".join(f"- {match}" for match in close_matches)
-                return f"❓ Không tìm thấy '{name}'. Bạn có nghĩ là một trong các món sau?\n{suggestions}"
-            return "❌ Không có thông tin về thực phẩm này."
+                return f"❓ Không tìm thấy '{name}'. Có phải bạn muốn nói đến:\n{suggestions}"
+            return "❌ Không có thông tin về bài tập này."

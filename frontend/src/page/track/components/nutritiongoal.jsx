@@ -4,6 +4,8 @@ import NutritionItem from './nutritionitems';
 import Dropdown from 'src/components/common/menu/Dropdown.jsx'
 import { useContext,useState,useEffect } from "react";
 import { userInfoContext } from "../index";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/firebase"; // hoặc đường dẫn đến cấu hình Firebase của bạn
 
 
 const NutritionGoalsCard = () => {
