@@ -21,11 +21,25 @@ const NutritionGoalsCard = () => {
     { label: 'Very intense training', value: '1.9' }
   ];
 
+  const saveGoalsToFirestore = async (goalsData) => {
+  try {
+    const userId = localStorage.getItem("userID") // hoặc field khác đại diện user ID
+    console.log(userId);
+    
+    if (!userId) return;
+
+    const docRef = doc(db, "users", userId);
+    await setDoc(docRef, { goals: goalsData }, { merge: true });
+  } catch (error) {
+    console.error("Error saving goals to Firestore:", error);
+  }
+};
+
   useEffect(() => {
   if (!userInfoData?.BMR || !userInfoData?.Macros) return;
 
   const calories = userInfoData.BMR * activityLevel;
-  const baseCalories = userInfoData.BMR * 1.0; // Mặc định scale gốc
+  const baseCalories = userInfoData.BMR;
 
   const scaleFactor = calories / baseCalories;
 
@@ -57,7 +71,9 @@ const NutritionGoalsCard = () => {
   };
 
   setGoals(goalsData);
+  saveGoalsToFirestore(goalsData); // 🔥 Ghi vào Firestore
 }, [activityLevel, userInfoData]);
+
 
   const handleDropdownChange = (value) => {
     setActivityLevel(parseFloat(value));
