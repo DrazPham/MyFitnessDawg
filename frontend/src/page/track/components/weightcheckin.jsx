@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { getFirestore, collection, addDoc,doc, updateDoc, getDoc,setDoc  } from 'firebase/firestore';
+import { db } from "src/firebase/index.jsx";
 
 const MeasurementForm = () => {
   const [formData, setFormData] = useState({
@@ -7,22 +9,74 @@ const MeasurementForm = () => {
     neck: '',
     waist: '',
     hips: '',
-    note: ''
   });
+
+  const userID = localStorage.getItem("userID")
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submitted data:', formData);
-    // You can store this in localStorage, send to an API, etc.
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const docRef = doc(db, 'users', userID);
+    const docSnap = await getDoc(docRef);
+          const form = document.getElementById('blogForm');
+
+
+    // Lấy ngày hôm nay theo định dạng YYYY-MM-DD
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Dữ liệu mới
+    const newEntry = {
+      date: today,
+      ...formData
+    };
+    
+
+    let updatedRecords = [];
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      const records = data.records || [];
+
+      
+
+      // Kiểm tra xem đã có entry nào cùng ngày chưa
+      const existingIndex = records.findIndex(entry => entry.date === today);
+
+
+      if (existingIndex !== -1) {
+        // Nếu có, cập nhật entry cũ
+        records[existingIndex] = newEntry;
+      } else {
+        // Nếu chưa, thêm mới vào cuối
+        records.push(newEntry);
+      }
+
+      updatedRecords = records;
+    } else {
+      // Nếu document chưa tồn tại, tạo mới records
+      updatedRecords = [newEntry];
+    }
+
+    // Cập nhật records lên Firestore
+    await setDoc(docRef, { records: updatedRecords }, { merge: true });
+
+    alert(`Cập nhật dữ liệu thành công cho ngày ${today}`);
+    // form.reset();
+  } catch (err) {
+    console.error(err);
+    alert('Lỗi khi cập nhật dữ liệu!');
+  }
+};
+
 
   return (
-    <form onSubmit={handleSubmit} className="measurement-form">
+    <form onSubmit={handleSubmit} className="measurement-form" id = "RecordForm">
       <h2>📝 Body Measurement Tracker</h2>
 
       <div className="checkInGroup">
