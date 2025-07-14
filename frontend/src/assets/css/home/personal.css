@@ -16,12 +16,10 @@
 .personal-right{
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
 }
 .personal-right p {
     margin: 0px;
-    font-size: 32px; 
+    font-size: 24px; 
     font-weight: 600;
-    line-height: 40px; 
-    letter-spacing: -0.4px; 
 }

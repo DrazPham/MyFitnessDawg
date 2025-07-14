@@ -1,11 +1,9 @@
+import { useContext } from "react";
+import UserInfoContext from "components/functions/UserInfoContext";
 import Progress from "./progress";
 import { FaBullseye, FaUtensils, FaFire } from 'react-icons/fa';
-import { useContext } from "react";
-import { db } from "src/firebase/index.jsx";
-import UserInfoContext from "components/functions/UserInfoContext";
 import calculateNutritionTotals from "components/functions/calculateNutritionTotals";
 import calculateExerciseCalories from "components/functions/calculateExerciseCalories";
-
 const CaloriesTracking = () => {
 	const userInfoData = useContext(UserInfoContext).userInfo;
 	const totalFoodCalories = calculateNutritionTotals(userInfoData);
@@ -49,5 +47,4 @@ const CaloriesTracking = () => {
 		</div>
 	);
 }
-
 export default CaloriesTracking;

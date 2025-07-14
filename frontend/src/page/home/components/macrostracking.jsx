@@ -1,16 +1,10 @@
-import Progress from "./progress";
 import { useContext } from "react";
 import UserInfoContext from "components/functions/UserInfoContext";
+import Progress from "./progress";
 import calculateMacrosTotals from "components/functions/calculateMacrosTotals";
-
 function MacrosTracking() {
-	if (!UserInfoContext) {
-	return <div>Loading user info...</div>; // fallback an toàn nếu muốn thêm
-	}
 	const userInfoData = useContext(UserInfoContext).userInfo;
 	const totalMacros = calculateMacrosTotals(userInfoData);
-	
-
 	return (
 		<div className="container aximo-all-section tracking">
         	<h1>Macros</h1>
@@ -34,5 +28,4 @@ function MacrosTracking() {
 		</div>
 	);
 }
-
 export default MacrosTracking;

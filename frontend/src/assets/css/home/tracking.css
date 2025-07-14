@@ -54,3 +54,23 @@
 .caloriesTrackGroups p{
     margin: 0;
 }
+
+.stat-icon{
+    font-size: 30px;
+    padding: 10px;
+}
+
+@media (max-width:991px){
+    .tracker{
+        flex-direction: column;
+        gap:2rem
+    }
+}
+@media(max-width:1250px){
+    .macrostracker{
+        flex-direction: column;
+    }
+    .circularBorder{
+        margin: auto;
+    }
+}

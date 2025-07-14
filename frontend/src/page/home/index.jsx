@@ -3,7 +3,6 @@ import CaloriesTracking from "./components/caloriestracking";
 import MacrosTracking from "./components/macrostracking";
 import "assets/css/home/index.css";
 import "assets/css/home/tracking.css";
-
 function Home() {
 	return (
 		<main>
@@ -15,5 +14,4 @@ function Home() {
 		</main>
 	);
 }
-
 export default Home;
