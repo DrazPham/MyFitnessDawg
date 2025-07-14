@@ -26,3 +26,7 @@ header .aximo-default-btn{
         visibility: hidden;
     }
 }
+
+.light-version-logo{
+    max-height:50px
+}

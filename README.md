@@ -24,3 +24,5 @@ main.jsx là trang để thay đổi các page
 trong folder page sẽ chia thành các folder của các trang, trong mỗi folder sẽ gồm các components của trang đó và 1 file index.jsx(nếu thêm vào đường dẫn sẽ tiện hơn VD: src/home thay vì src/home/home.py)
 
 trong folder components/commom sẽ chứa các components chung của các trang như header,footer,...
+
+cjs để tránh lỗi module

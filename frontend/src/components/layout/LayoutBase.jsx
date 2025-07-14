@@ -10,5 +10,4 @@ function LayoutBase() {
 		</>
 	);
 }
-
 export default LayoutBase;

@@ -1,8 +1,7 @@
-import { useContext,useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "src/firebase/index.jsx";
-import { getAuth } from "firebase/auth";
 import Footer from "components/footer/main";
 import Header from "components/header/main";
 import UserInfoContext from "components/functions/UserInfoContext";

@@ -13,8 +13,6 @@ import ErrorPage from "../error-page";
 import Blog from "page/blog";
 import SingleBlogPage from "page/blog/SingleBlog.jsx";
 import UserInfo from "page/userinfo";
-import Test from "page/test"
-
 export const router = createBrowserRouter([
 	{
 		path: "/",
@@ -69,10 +67,6 @@ export const router = createBrowserRouter([
 					{
 						path: "*",
 						element: <ErrorPage />,
-					},
-					{
-						path: "/test",
-						element: <Test />,
 					},
 					{
 						path: "/blog/:id",

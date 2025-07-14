@@ -3,12 +3,12 @@ import { getAuth} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";  
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD6W5XcknjxecS1wBgrYhThRdK6gWIfO1Y",
-  authDomain: "myfitnessdawg-project.firebaseapp.com",
-  projectId: "myfitnessdawg-project",
-  storageBucket: "myfitnessdawg-project.firebasestorage.app",
-  messagingSenderId: "91647088596",
-  appId: "1:91647088596:web:ee7804e60fbc6b555ba841"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 const app = initializeApp(firebaseConfig);  
 
