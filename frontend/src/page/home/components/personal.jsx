@@ -5,7 +5,7 @@ import "assets/css/home/personal.css";
 function Personal(){
     const userInfoData = useContext(UserInfoContext).userInfo;
     return(
-        <div class="personal container">
+        <div className="personal container">
             <img src={getUserImage(
                 userInfoData.gender
                 )} alt="" />

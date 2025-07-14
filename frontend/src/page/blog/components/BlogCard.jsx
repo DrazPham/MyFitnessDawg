@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import ArrowRight from "assets/images/icon/arrow-right.svg";
-
 function BlogCard({ blog: { title, category, content, date, img } }) {
 	return (
 		<div className="single-post-item">

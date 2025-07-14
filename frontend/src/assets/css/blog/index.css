@@ -1,6 +1,7 @@
 .gridblogsection{
     display: grid;
     grid-template-columns: repeat(6,1fr);
+    margin:30px 0 100px;
 }
 .gridblogcontainer{
     grid-column: 2/6;
@@ -21,4 +22,96 @@ img:not([src]):not([srcset]),
 img[src=""],
 img[src="broken-link.jpg"] {
   display: none;
+}
+
+
+.gridBlogContainer{
+    position:relative;
+    margin:10px 0;
+}
+
+.single-post-item{
+    height:100%;
+}
+.post-thumbnail{
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+.gridBlogImage{
+    width: 100%;
+	height: 100%;
+	object-fit: fill;
+}
+.post-date{
+    position:absolute;
+    bottom:30px
+}
+.post-read-more{
+    position:absolute;
+    bottom:10px
+}
+.SingleBlogTitle{
+    text-align: center;
+}
+
+.SingleBlogInfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 24px;
+    margin: 0 0 1rem;
+}
+.SingleBlogInfo span {
+    font-size: 24px;
+}
+.SingleBlogImage{
+    height: 100%; 
+    border-radius: 50px;
+    width: 100%
+}
+.SingleBlogDetail{
+     margin: 10px 30px 0 ;
+}
+.SingleBlogComponents{
+     margin: 10px 0 ;
+}
+.SingleBlogComponents p{
+    font-size: 20px;
+}
+.SingleBlogComponentsImage{
+    border-radius: 20px;
+    width: 100% 
+}
+.SingleBlogCategoryGroup{
+    margin: 0 30px ;
+}
+.SingleBlogCategoryList{
+    display: flex;
+    gap: 20px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+    padding: 0;
+    list-style: none
+}
+.SingleBlogListElements{
+    padding: 10px 20px;
+    background-color: #787c91;
+    color: white;
+    border-radius: 30px
+}
+
+@media (max-width:1010px) {
+    .carousel{
+        width: 80vw;
+    }
+    .gridblogcontainer{
+        grid-template-columns:repeat(2,1fr)
+    }
+}
+@media (max-width:800px) {
+
+    .gridblogcontainer{
+        grid-template-columns:repeat(1,1fr)
+    }
 }

@@ -1,47 +1,80 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import PostMeta from "./PostMeta";
-import React, { useEffect, useState } from 'react';
-import PostTags from "./PostTags";
-import ReactMarkdown from 'react-markdown';
-import { useContext } from "react";
-import { BlogContext } from "../../SingleBlog";
+import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import { useParams } from "react-router-dom";
+import rehypeRaw from "rehype-raw";
+import { db } from "src/firebase/index.jsx";
+import { doc, getDoc } from "firebase/firestore";
+import timestampToDate from "components/functions/timestampToDate";
+
 function BlogDetails() {
-	const [blogContent, setBlogContent] = useState([]);
+  const { id } = useParams();
+  const [blog, setBlog] = useState(null);
 
-	useEffect(() => {
-		const fetchStoryContent = async () => {
-			const q = query(collection(db, 'blog'), orderBy('date', 'desc'));
-			const querySnapshot = await getDocs(q);
-			const contentArray = querySnapshot.docs.map(doc => doc.data());
-			setBlogContent(contentArray);		
-		};
+  useEffect(() => {
+    const fetchBlog = async () => {
+      const docRef = doc(db, "blog", id);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const blogData = docSnap.data();
+        if (blogData.meta?.date) {
+          blogData.meta.date = timestampToDate(blogData.meta.date);
+        }
+        setBlog(blogData);
+      }
+    };
 
-		fetchStoryContent();
-	}, []);
+    fetchBlog();
+  }, [id]);
 
-	if (blogContent.length === 0) {
-		return <div>Loading...</div>;
-	}
+  if (!blog) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <div className="SingleBlogContainer">
+      <h2 className="SingleBlogTitle">{blog.title}</h2>
+      <div className="SingleBlogInfo">
+        <span>{timestampToDate(blog.meta?.publishedDate)}</span>|
+        <span>{blog.meta?.timeRead} minutes</span>
+      </div>
 
-	let blogInfo = blogContent[0];
-	
-	return (
-		<div className="single-post-content-wrap">
-			<PostMeta/>
-			<div className="entry-content">
-				<h3>{blogInfo.title}</h3>
-				<img style={{aspectRatio:"16/9",objectFit:"cover",borderRadius:"20px"}} src = {blogInfo.image}></img>
-				{blogInfo.content.map((item, index) => (
-					<div key={index}>
-						<ReactMarkdown breaks>{item.text}</ReactMarkdown>
-						<img src={item.image} alt={`Image ${index + 1}`} onError={(e) => { e.target.style.display = 'none'; }} />
-					</div>
-				))}
-				<PostTags tags={blogContent[0].tags} />
-			</div>
-		</div>
-	);
+      <img
+        className="SingleBlogImage"
+        src={blog.image}
+        alt={blog.title || "Blog Banner"}
+      />
+
+      <div className="SingleBlogDetail">
+        {blog.content.map((e, index) => (
+          <div className="SingleBlogComponents" key={index}>
+            {e.headline && <h3>{e.headline}</h3>}
+            {e.image && (
+              <img
+                className="SingleBlogComponentsImage"
+                src={e.image}
+                alt={`Content Image ${index}`}
+              />
+            )}
+            {
+              <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                {e.text}
+              </ReactMarkdown>
+            }
+          </div>
+        ))}
+      </div>
+
+      <div className="SingleBlogCategoryGroup">
+        <h2>Categories:</h2>
+        <ul className="SingleBlogCategoryList">
+          {blog.tags.map((e, index) => (
+            <li key={index} className="SingleBlogListElements">
+              {e}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
 }
-
 
 export default BlogDetails;
