@@ -24,7 +24,6 @@ const NutritionGoalsCard = () => {
   const saveGoalsToFirestore = async (goalsData) => {
   try {
     const userId = localStorage.getItem("userID") // hoặc field khác đại diện user ID
-    console.log(userId);
     
     if (!userId) return;
 
