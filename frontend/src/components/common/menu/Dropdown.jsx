@@ -13,7 +13,7 @@ const Dropdown = ({ label, options, onChange }) => {
   };
 
   return (
-    <div>
+    <div style={{display:"flex", gap:"1rem"}}>
       <label htmlFor="dropdown">{label || 'Choose an option:'}</label>
       <select id="dropdown" value={selectedOption} onChange={handleChange}>
         <option value="">--Please choose--</option>

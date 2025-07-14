@@ -37,10 +37,32 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .checkInGroup label {
-    width: 10%;
+    min-width: 10%;
     text-align: left;
     height: 100%; /* hoặc bạn có thể dùng line-height nếu là một dòng */
   display: flex;
   align-items: center; /* căn giữa dọc chữ */
   justify-content: left; /* căn giữa ngang chữ nếu muốn */
+}
+.timeSelectorContainer{
+    display: flex;
+    gap:1rem;
+    margin-bottom: 1rem;
+}
+.reportWrapper{
+    margin: auto;
+    width: fit-content;
+}
+
+@media (max-width:900px){
+    .recharts-wrapper{
+        width: 500px !important;
+        height: 250px !important;
+    }
+}
+@media (max-width:700px){
+    .recharts-wrapper{
+        width: 400px !important;
+        height: 200px !important;
+    }
 }
