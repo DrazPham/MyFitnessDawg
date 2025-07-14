@@ -1,4 +1,4 @@
-// src/contexts/userInfoContext.js
+// components/functions/UserInfoContext.js
 import { createContext } from "react";
-const userInfoContext = createContext(null);
-export default userInfoContext;
+const UserInfoContext = createContext(null);
+export default UserInfoContext;

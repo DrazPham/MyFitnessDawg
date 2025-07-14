@@ -9,32 +9,42 @@ import UserInfoContext from "components/functions/UserInfoContext";
 
 function LayoutOne() {
 	const [userInfo, setUserInfo] = useState(null);
-	const [loading, setLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(true); // 👈 Trạng thái tải dữ liệu
 
 	useEffect(() => {
-    const userID = localStorage.getItem("userID");
-	if (!userID) {
-		console.warn("⚠️ Không tìm thấy userID trong localStorage");
-    return;
-    }
-	const fetchUserInfo = async () => {
-		try {
-			const userDoc = await getDoc(doc(db, "users", userID));
-			if (userDoc.exists()) {
-			setUserInfo(userDoc.data());
-			}
-		} catch (error) {
-			console.error("Lỗi khi tải user info:", error);
-		} finally {
-			setLoading(false);
-		}
-	};
+    const fetchUserInfo = async () => {
+      const uid = localStorage.getItem("userID");
+      if (!uid) {
+        setIsLoading(false); // Không có UID, không cần đợi
+        return;
+      }
 
-		fetchUserInfo();
-	}, []);
+      try {
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setUserInfo(docSnap.data());
+        } else {
+          console.warn("User data not found");
+        }
+      } catch (error) {
+        console.error("Error loading user info:", error);
+      } finally {
+        setIsLoading(false); // ✅ Đảm bảo set false dù thành công hay lỗi
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
+  // 🔒 Không render gì nếu chưa có dữ liệu
+  if (isLoading) {
+    return <div>Loading...</div>; // hoặc spinner
+  }
+	console.log(userInfo)
 	return (
 		<UserInfoContext.Provider value={{ userInfo, setUserInfo }}>
-			<Header />
+			<Header/>
 			<Outlet />
 			<Footer />
 		</UserInfoContext.Provider>

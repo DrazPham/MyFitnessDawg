@@ -2,8 +2,24 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db, auth } from "src/firebase/index.jsx";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import 'assets/css/account/index.css';
+import { collection, query, where, getDocs } from "firebase/firestore";
 
+import 'assets/css/account/index.css';
+const getUserIDByEmailAndPassword = async (email, password) => {
+  const usersRef = collection(db, "users");
+  const q = query(
+    usersRef,
+    where("email", "==", email),
+    where("password", "==", password)
+  );
+
+  const querySnapshot = await getDocs(q);
+  if (!querySnapshot.empty) {
+    return querySnapshot.docs[0].id;
+  } else {
+    return null;
+  }
+};
 function AccountForm() {
   const navigate = useNavigate();
   const [isSignUpActive, setIsSignUpActive] = useState(false);
@@ -11,6 +27,7 @@ function AccountForm() {
     email: "",
     password: "",
   });
+  
   const [notification, setNotification] = useState("");
 
   const handleChange = (e) => {
@@ -54,13 +71,23 @@ function AccountForm() {
 
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    setNotification("Welcome back!");
-    navigate("/home");
+
+    // ✅ Lấy userID trong Firestore dựa trên email và password
+    const userID = await getUserIDByEmailAndPassword(email, password);
+
+    if (userID) {
+      localStorage.setItem('userID', userID);
+      setNotification("Welcome back!");
+      navigate("/home");
+    } else {
+      setNotification("User info not found in Firestore");
+    }
   } catch (error) {
     console.error("Login error:", error.code, error.message);
     setNotification("Invalid credentials");
   }
 };
+
 
   return (
     <div className={`LogInContainer ${isSignUpActive ? 'right-panel-active' : ''}`} id="LogInContainer">

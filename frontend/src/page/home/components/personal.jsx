@@ -2,22 +2,25 @@ import "assets/css/home/personal.css";
 import MaleUser from "assets/images/logo/maleuser.png";
 import FemaleUser from "assets/images/logo/femaleuser.png";
 import { useContext } from "react";
-import { userInfoContext } from "../index";
+import UserInfoContext from "components/functions/UserInfoContext";
 
 function Personal(){
-	const userInfoData = useContext(userInfoContext);
+    if (!UserInfoContext) {
+    return <div>Loading user info...</div>; // fallback an toàn nếu muốn thêm
+    }
+    const userInfoData = useContext(UserInfoContext).userInfo;
     const getUserImage = (gender) => {
-  return gender === "male" ? MaleUser : FemaleUser;
+    return gender === "male" ? MaleUser : FemaleUser;
     };
     return(
         <div class="personal container">
             <img src={getUserImage(
-                // userInfoData.gender
+                userInfoData.gender
                 )} alt="" />
             <div className="personal-right">
                 <p>Started on</p>
                 <p>
-                    {/* {userInfoData.FirstLogIn} */}
+                    {userInfoData.FirstLogIn}
                 </p>
             </div>
 

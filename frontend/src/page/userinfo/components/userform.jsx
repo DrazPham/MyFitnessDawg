@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from "src/firebase/index.jsx";
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc,setDoc,doc } from 'firebase/firestore';
 import "assets/css/userform/index.css";
 
 function UserForm() {
@@ -142,8 +142,10 @@ function UserForm() {
       const FirstLogIn = new Date().toISOString().split('T')[0];;
 
       try {
-        const docRef = await addDoc(collection(db, 'users'), {
+        const docRef = doc(collection(db, 'users')); 
+        await setDoc(docRef, {
   ...formData,
+  userID: docRef.id,
   FirstLogIn: FirstLogIn,
   BMR: Math.round(bmr),
   TDEE: Math.round(tdee),
