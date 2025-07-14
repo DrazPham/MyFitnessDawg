@@ -4,7 +4,8 @@ import ReportingPeriodSelector from"./periodselector"
 import Chart from"./chart"
 import ExportButton from "./exportbutton"
 import { useContext } from "react";
-import { userInfoContext } from "../index";
+import UserInfoContext from "components/functions/UserInfoContext";
+
 
 const getFilteredSortedData = (records, startDate, endDate, sortOrder = 'asc') => {
   const data = records
@@ -33,7 +34,11 @@ const getFilteredSortedData = (records, startDate, endDate, sortOrder = 'asc') =
 
 
 const WeightRecord = ({ onDateChange }) => {
-  const userInfoData = useContext(userInfoContext);
+      if (!UserInfoContext) {
+    return <div>Loading user info...</div>; // fallback an toàn nếu muốn thêm
+    }
+      const userInfoData = useContext(UserInfoContext).userInfo;
+
 const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   

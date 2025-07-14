@@ -3,13 +3,17 @@ import React from 'react';
 import NutritionItem from './nutritionitems';
 import Dropdown from 'src/components/common/menu/Dropdown.jsx'
 import { useContext,useState,useEffect } from "react";
-import { userInfoContext } from "../index";
+import UserInfoContext from "components/functions/UserInfoContext";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase"; // hoặc đường dẫn đến cấu hình Firebase của bạn
 
 
 const NutritionGoalsCard = () => {
-  const userInfoData = useContext(userInfoContext);
+      if (!UserInfoContext) {
+    return <div>Loading user info...</div>; // fallback an toàn nếu muốn thêm
+    }
+    const userInfoData = useContext(UserInfoContext).userInfo;
+
   const [activityLevel, setActivityLevel] = useState(1.55); // mặc định: tập vừa
   const [goals, setGoals] = useState({});
 
