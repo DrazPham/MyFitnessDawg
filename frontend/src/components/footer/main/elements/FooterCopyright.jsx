@@ -1,5 +1,4 @@
 import "assets/css/footer/copyright.css";
-
 function FooterCopyright() {
 	return (
 		<div className="aximo-copywright four text-center">
@@ -7,5 +6,4 @@ function FooterCopyright() {
 		</div>
 	);
 }
-
 export default FooterCopyright;

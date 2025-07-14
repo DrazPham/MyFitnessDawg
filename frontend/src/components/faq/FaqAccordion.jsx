@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "assets/css/base/faq.css"
-import faqItems from "./faqItems";
+import faqItems from "./components/faqItems";
 
 export default function FAQAccordion() {
 	const [activeIndex, setActiveIndex] = useState(null);

@@ -192,3 +192,7 @@ p{
     color:white;
     font-weight: 300;
 }
+
+.LogInContainer{
+	height: 80vh;
+}

@@ -22,3 +22,21 @@
   width: 24px;
   height: 24px;
 }
+.genderLabels{
+      display: flex;
+    text-align: center;
+    align-items: center;
+}
+.genderGroup{
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 991px) {
+  main .userinfo{
+    grid-column: 1/7;
+  }
+  .userinfoform{
+    padding: 0;
+  }
+}

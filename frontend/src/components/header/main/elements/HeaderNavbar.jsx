@@ -37,7 +37,7 @@ function HeaderNavbar() {
           />
         </div>
         <div>
-          <Link to="/" style={{ color: "white", fontWeight: "bold" }}>
+          <Link to="/" id = "signOutButton">
             Sign Out
           </Link>
         </div>

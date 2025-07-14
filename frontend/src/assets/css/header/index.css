@@ -21,6 +21,11 @@ header .aximo-default-btn{
     height: 50px;
     line-height: 47.5px;
 }
+
+#signOutButton{
+    color: white;
+    font-weight: bold ;
+}
 @media (max-width: 991px) {
     .header-btn{
         visibility: hidden;
