@@ -1,0 +1,56 @@
+.chat{
+    width: 100%;
+    height: 80vh;
+    margin: auto;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.chatButton{
+    margin: auto;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: rgb(40, 167, 69);
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+}
+.chatInput{
+    flex: 1 1 0%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: 1px solid rgb(204, 204, 204);
+    margin-right: 0.5rem;
+}
+.chatBottomGroup{
+    border-top: 1px solid rgb(204, 204, 204);
+    padding: 0.75rem;
+    display: flex;
+}
+.chatTop{
+    flex: 1 1 0%;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: rgb(249, 249, 249);
+    border-radius: 10px;
+}
+.chatElementsOutter{
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+.chatElements{
+    max-width: 70%;
+    padding: 0.75rem 1rem;
+    border-radius: 15px;
+    background-color: rgb(212, 237, 218);
+    color: rgb(51, 51, 51);
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+.chatElements p{
+    color:black;
+    font-size: 20px;
+    margin: 0;
+}

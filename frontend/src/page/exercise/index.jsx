@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react"; 
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "src/firebase/index.jsx";
-import ReactMarkdown from "react-markdown";
 import axios from "axios";
+import ReactMarkdown from "react-markdown";
+import "assets/css/chat/index.css"
 
 function Exercise() {
   const [userInput, setUserInput] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+  { sender: "bot", text: "Hello! You can enter a physical activity along with the duration in minutes. If no time is provided, I will assume 60 minutes by default.\n\nExample: *Running 30 minutes" }
+]);
   const [loading, setLoading] = useState(false);
   const [exercise, setExercise] = useState([]);
   const userID = localStorage.getItem("userID");

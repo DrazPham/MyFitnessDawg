@@ -1,12 +1,18 @@
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "src/firebase/index.jsx";
-import ReactMarkdown from "react-markdown";
 import axios from "axios";
+import ReactMarkdown from "react-markdown";
+import "assets/css/chat/index.css"
 
 function Chat() {
   const [userInput, setUserInput] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      sender: "bot",
+      text: " Hello! Please enter a food item along with the amount in grams, and I will add its nutritional values to your cart. If no amount is specified, I will assume 100 grams by default.\n\nExample: *White rice 50g*",
+    },
+  ]);
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
   const userID = localStorage.getItem("userID");
@@ -41,9 +47,8 @@ function Chat() {
         const carbs = parseFloat(match[6]);
 
         const foodItem = { name, grams, calories, protein, fat, carbs };
-        setCart((prev) => [...prev, foodItem]);  // ✅ Tự động thêm vào giỏ
+        setCart((prev) => [...prev, foodItem]); // ✅ Tự động thêm vào giỏ
       }
-
     } catch (error) {
       const errorMessage = {
         sender: "bot",
@@ -63,7 +68,7 @@ function Chat() {
       if (!userID || cart.length === 0) return;
 
       try {
-        const docRef = doc(db, 'users', userID);
+        const docRef = doc(db, "users", userID);
         const docSnap = await getDoc(docRef);
 
         let updatedCart = [];
@@ -86,49 +91,21 @@ function Chat() {
     };
 
     updateFirestoreCart();
-  }, [cart]);  // Chạy mỗi khi `cart` thay đổi
+  }, [cart]); // Chạy mỗi khi `cart` thay đổi
 
   return (
     <main>
-      <div className="wrapper aximo-all-section chat"
-        style={{
-          width: "100%",
-          height: "80vh",
-          margin: "auto",
-          border: "1px solid #ccc",
-          borderRadius: "10px",
-          display: "flex",
-          flexDirection: "column",
-          fontFamily: "Arial, sans-serif",
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            padding: "1rem",
-            overflowY: "auto",
-            backgroundColor: "#f9f9f9",
-          }}
-        >
+      <div
+        className="wrapper aximo-all-section chat">
+        <div className ="chatTop">
           {messages.map((msg, idx) => (
-            <div
+            <div className = "chatElementsOutter"
               key={idx}
               style={{
-                display: "flex",
                 justifyContent: msg.sender === "user" ? "flex-end" : "flex-start",
-                marginBottom: "0.5rem",
               }}
             >
-              <div
-                style={{
-                  maxWidth: "70%",
-                  padding: "0.75rem 1rem",
-                  borderRadius: "15px",
-                  backgroundColor: msg.sender === "user" ? "#cce5ff" : "#d4edda",
-                  color: "#333",
-                  wordWrap: "break-word",
-                  whiteSpace: "pre-wrap",
-                }}
+              <div className = "chatElements"
               >
                 <ReactMarkdown>{msg.text}</ReactMarkdown>
               </div>
@@ -136,38 +113,17 @@ function Chat() {
           ))}
         </div>
 
-        <div
-          style={{
-            borderTop: "1px solid #ccc",
-            padding: "0.75rem",
-            display: "flex",
-          }}
-        >
+        <div className ="chatBottomGroup">
           <input
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
             placeholder="Nhập tin nhắn..."
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            style={{
-              flex: 1,
-              padding: "0.5rem 1rem",
-              fontSize: "1rem",
-              borderRadius: "20px",
-              border: "1px solid #ccc",
-              marginRight: "0.5rem",
-            }}
+            className = "chatInput"
           />
-          <button
+          <button className = "chatButton"
             onClick={sendMessage}
             disabled={loading}
-            style={{
-              padding: "0.5rem 1rem",
-              borderRadius: "20px",
-              backgroundColor: "#28a745",
-              color: "#fff",
-              border: "none",
-              cursor: "pointer",
-            }}
           >
             {loading ? "..." : "Gửi"}
           </button>
@@ -176,5 +132,4 @@ function Chat() {
     </main>
   );
 }
-
 export default Chat;
