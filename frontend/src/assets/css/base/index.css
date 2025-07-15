@@ -1,0 +1,51 @@
+.base .barger-menu{
+    margin: 5px 0;
+}
+.base .AboutContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.base .aximo-video-wrap{
+    min-width: 60%;
+    aspect-ratio: 16/9;
+    border: 10px solid black;
+    border-radius: 30px;
+}
+.base .aximo-counter-wrap{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.base .aximo-counter-wrap span{
+    font-size: 36px;
+}
+
+.base .section{
+    margin: 2rem 0;
+}
+.base .faq {
+    margin: 4rem auto;
+    width: 60%;
+}
+.base .faq h2{
+    margin: 0 0 1rem 0;
+}
+
+.base .title{
+    margin: 2rem 0 1rem 0;
+}
+
+.title p {
+    color:black;
+    font-size: 16px;
+}
+
+@media (max-width: 991px) {
+	.base .AboutContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+}

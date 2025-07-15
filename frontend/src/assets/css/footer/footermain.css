@@ -1,0 +1,11 @@
+footer #logo{
+    width: 200px;
+}
+footer .container{
+    margin: 0 auto;
+
+}
+footer .row{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}

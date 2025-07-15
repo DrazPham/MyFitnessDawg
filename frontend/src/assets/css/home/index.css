@@ -1,0 +1,10 @@
+main .home{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.home p{
+    color:black
+}

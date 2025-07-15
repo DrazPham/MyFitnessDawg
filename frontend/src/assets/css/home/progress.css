@@ -1,0 +1,54 @@
+.progress-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  margin: 0 auto;
+}
+
+.progress-value {
+  position: absolute;
+}
+
+input[type="number"] {
+  margin-top: 20px;
+  font-size: 18px;
+  width: 80px;
+}
+
+.circularBorder{
+  position: relative;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circularInner{
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: white;
+  border-radius: 50%;
+}
+
+.progressInfo{
+  position: absolute;
+  text-align: center;
+}
+.progressNumbers{
+  font-size: 24px;
+  font-weight: bold; 
+}
+.progressLabel{
+  font-size: 12px;
+  color: #555; 
+}

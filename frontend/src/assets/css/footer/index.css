@@ -1,0 +1,17 @@
+footer{
+    /* position: absolute;
+    bottom: 0; */
+    width: 100vw;
+    background-color: var(--bgcolor1);
+}
+footer h2{
+    color: white
+}
+.aximo-footer-bottom.four{
+    border-color: white;
+}
+
+.aximo-social-icon3 ul li a:hover {
+	box-shadow: none;
+	background-color:var(--bgcolor4);
+}

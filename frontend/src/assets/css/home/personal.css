@@ -1,0 +1,25 @@
+.personal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.personal img{
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;
+    width: 5em;
+    height: 5em;
+}
+.personal-right{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.personal-right p {
+    margin: 0px;
+    font-size: 24px; 
+    font-weight: 600;
+}

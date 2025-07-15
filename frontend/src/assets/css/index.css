@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif !important;
+}
+/* COLOR DEFINITION */
+:root{
+    --bgcolor1: #3674B5;
+    --bgcolor2: #578FCA;
+    --bgcolor3: #F5F0CD; 
+    --bgcolor4: #FADA7A; 
+}
+
+main{
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+}
+main .wrapper{
+    grid-column: 2/6;
+    width: 100%;
+}
