@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "src/firebase/index.jsx";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
-import "assets/css/chat/index.css"
+import "assets/css/chat/index.css";
 
 function Exercise() {
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([
-  { sender: "bot", text: "Hello! You can enter a physical activity along with the duration in minutes. If no time is provided, I will assume 60 minutes by default.\n\nExample: *Running 30 minutes" }
-]);
+    {
+      sender: "bot",
+      text: "Hello! You can enter a physical activity along with the duration in minutes. If no time is provided, I will assume 60 minutes by default.\n\nExample: *Running 30 minutes",
+    },
+  ]);
   const [loading, setLoading] = useState(false);
   const [exercise, setExercise] = useState([]);
   const userID = localStorage.getItem("userID");
@@ -30,12 +33,11 @@ function Exercise() {
       const botMessage = { sender: "bot", text: botText };
       setMessages((prev) => [...prev, botMessage]);
 
-      // ✅ Regex mới dành cho bài tập thể dục
       const match = botText.match(
-  /Thông tin về bài tập \*\*(.+?)\*\* trong (\d+(?:\.\d+)?) phút:\s*- Calories tiêu hao: \*\*(\d+(?:\.\d+)?) kcal\*\*/i
-);
-      console.log(botText)
-      console.log(match)
+        /Thông tin về bài tập \*\*(.+?)\*\* trong (\d+(?:\.\d+)?) phút:\s*- Calories tiêu hao: \*\*(\d+(?:\.\d+)?) kcal\*\*/i
+      );
+      console.log(botText);
+      console.log(match);
 
       if (match) {
         const name = match[1];
@@ -45,7 +47,6 @@ function Exercise() {
         const exerciseItem = { name, minutes, calories };
         setExercise((prev) => [...prev, exerciseItem]);
       }
-
     } catch (error) {
       const errorMessage = {
         sender: "bot",
@@ -59,115 +60,87 @@ function Exercise() {
     setLoading(false);
   };
 
-  // ✅ Lưu vào Firestore khi có dữ liệu mới
   useEffect(() => {
-    const updateFirestoreExercise = async () => {
-      if (!userID || exercise.length === 0) return;
+  const updateFirestoreCart = async () => {
+    if (!userID || exercise.length === 0) return;
 
-      try {
-        const docRef = doc(db, 'users', userID);
-        const docSnap = await getDoc(docRef);
+    try {
+      const docRef = doc(db, "users", userID);
+      const docSnap = await getDoc(docRef);
 
-        let updatedExercise = [];
+      const today = new Date().toISOString().split("T")[0]; // Lấy định dạng yyyy-mm-dd
+      let resetCart = false;
+      let updatedCart = [];
 
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          const existing = data.Exercise || [];
-          updatedExercise = [...existing, ...exercise];
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        const existingCart = data.Cart || [];
+        const lastUpdatedDate = data.lastCartUpdate?.toDate?.().toISOString().split("T")[0];
+
+        if (lastUpdatedDate !== today) {
+          // Ngày mới => reset exercise
+          resetCart = true;
+          updatedCart = [...exercise];
         } else {
-          updatedExercise = [...exercise];
+          updatedCart = [...existingCart, ...exercise];
         }
-
-        await setDoc(docRef, { Exercise: updatedExercise }, { merge: true });
-        console.log("✅ Firestore cập nhật thành công:", updatedExercise);
-      } catch (err) {
-        console.error("❌ Lỗi khi cập nhật Firestore:", err);
+      } else {
+        updatedCart = [...exercise];
+        resetCart = true;
       }
-    };
 
-    updateFirestoreExercise();
-  }, [exercise]);
+      await setDoc(docRef, {
+        Cart: updatedCart,
+        lastCartUpdate: serverTimestamp()
+      }, { merge: true });
+
+      if (resetCart) {
+        console.log("🗓 Cart được reset do ngày mới:", today);
+      }
+
+      console.log("✅ Firestore cập nhật thành công:", updatedCart);
+    } catch (err) {
+      console.error("❌ Lỗi khi cập nhật Firestore:", err);
+    }
+  };
+
+  updateFirestoreCart();
+}, [exercise]);
 
   return (
     <main>
-      <div className="wrapper aximo-all-section chat"
-        style={{
-          width: "100%",
-          height: "80vh",
-          margin: "auto",
-          border: "1px solid #ccc",
-          borderRadius: "10px",
-          display: "flex",
-          flexDirection: "column",
-          fontFamily: "Arial, sans-serif",
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            padding: "1rem",
-            overflowY: "auto",
-            backgroundColor: "#f9f9f9",
-          }}
-        >
+      <div className="wrapper aximo-all-section chat">
+        <div className="chatTop">
           {messages.map((msg, idx) => (
             <div
+              className="chatElementsOutter"
               key={idx}
               style={{
                 display: "flex",
-                justifyContent: msg.sender === "user" ? "flex-end" : "flex-start",
+                justifyContent:
+                  msg.sender === "user" ? "flex-end" : "flex-start",
                 marginBottom: "0.5rem",
               }}
             >
-              <div
-                style={{
-                  maxWidth: "70%",
-                  padding: "0.75rem 1rem",
-                  borderRadius: "15px",
-                  backgroundColor: msg.sender === "user" ? "#cce5ff" : "#d4edda",
-                  color: "#333",
-                  wordWrap: "break-word",
-                  whiteSpace: "pre-wrap",
-                }}
-              >
+              <div className="chatElements">
                 <ReactMarkdown>{msg.text}</ReactMarkdown>
               </div>
             </div>
           ))}
         </div>
 
-        <div
-          style={{
-            borderTop: "1px solid #ccc",
-            padding: "0.75rem",
-            display: "flex",
-          }}
-        >
+        <div className="chatBottomGroup">
           <input
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
             placeholder="Nhập tên bài tập (VD: chạy 30 phút)..."
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            style={{
-              flex: 1,
-              padding: "0.5rem 1rem",
-              fontSize: "1rem",
-              borderRadius: "20px",
-              border: "1px solid #ccc",
-              marginRight: "0.5rem",
-            }}
+            className="chatInput"
           />
           <button
+            className="chatButton"
             onClick={sendMessage}
             disabled={loading}
-            style={{
-              padding: "0.5rem 1rem",
-              borderRadius: "20px",
-              backgroundColor: "#28a745",
-              color: "#fff",
-              border: "none",
-              cursor: "pointer",
-            }}
           >
             {loading ? "..." : "Gửi"}
           </button>

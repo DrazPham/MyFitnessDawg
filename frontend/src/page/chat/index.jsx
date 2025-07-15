@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "src/firebase/index.jsx";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
@@ -32,8 +32,6 @@ function Chat() {
       const botText = res.data.reply;
       const botMessage = { sender: "bot", text: botText };
       setMessages((prev) => [...prev, botMessage]);
-
-      // ✅ Regex phù hợp với định dạng phản hồi thực tế
       const match = botText.match(
         /Thông tin về (.+?) \(trên ([\d.]+)g\):\s*- Calories: ([\d.]+) kcal\s*- Protein: ([\d.]+)g\s*- Fat: ([\d.]+)g\s*- Carbs: ([\d.]+)g/i
       );
@@ -47,7 +45,7 @@ function Chat() {
         const carbs = parseFloat(match[6]);
 
         const foodItem = { name, grams, calories, protein, fat, carbs };
-        setCart((prev) => [...prev, foodItem]); // ✅ Tự động thêm vào giỏ
+        setCart((prev) => [...prev, foodItem]); 
       }
     } catch (error) {
       const errorMessage = {
@@ -61,37 +59,51 @@ function Chat() {
     setUserInput("");
     setLoading(false);
   };
-
-  // ✅ useEffect tách riêng ở ngoài function
   useEffect(() => {
-    const updateFirestoreCart = async () => {
-      if (!userID || cart.length === 0) return;
+  const updateFirestoreCart = async () => {
+    if (!userID || cart.length === 0) return;
 
-      try {
-        const docRef = doc(db, "users", userID);
-        const docSnap = await getDoc(docRef);
+    try {
+      const docRef = doc(db, "users", userID);
+      const docSnap = await getDoc(docRef);
 
-        let updatedCart = [];
+      const today = new Date().toISOString().split("T")[0]; // Lấy định dạng yyyy-mm-dd
+      let resetCart = false;
+      let updatedCart = [];
 
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          const existingCart = data.Cart || [];
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        const existingCart = data.Cart || [];
+        const lastUpdatedDate = data.lastCartUpdate?.toDate?.().toISOString().split("T")[0];
 
-          updatedCart = [...existingCart, ...cart];
-        } else {
+        if (lastUpdatedDate !== today) {
+          resetCart = true;
           updatedCart = [...cart];
+        } else {
+          updatedCart = [...existingCart, ...cart];
         }
-
-        await setDoc(docRef, { Cart: updatedCart }, { merge: true });
-
-        console.log("✅ Firestore cập nhật thành công:", updatedCart);
-      } catch (err) {
-        console.error("❌ Lỗi khi cập nhật Firestore:", err);
+      } else {
+        updatedCart = [...cart];
+        resetCart = true;
       }
-    };
 
-    updateFirestoreCart();
-  }, [cart]); // Chạy mỗi khi `cart` thay đổi
+      await setDoc(docRef, {
+        Cart: updatedCart,
+        lastCartUpdate: serverTimestamp()
+      }, { merge: true });
+
+      if (resetCart) {
+        console.log("🗓 Cart được reset do ngày mới:", today);
+      }
+
+      console.log("✅ Firestore cập nhật thành công:", updatedCart);
+    } catch (err) {
+      console.error("❌ Lỗi khi cập nhật Firestore:", err);
+    }
+  };
+
+  updateFirestoreCart();
+}, [cart]);
 
   return (
     <main>
