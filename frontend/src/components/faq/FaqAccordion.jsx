@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "assets/css/base/faq.css"
 import faqItems from "./components/faqItems";
+import "assets/css/base/faq.css"
 
 export default function FAQAccordion() {
 	const [activeIndex, setActiveIndex] = useState(null);
@@ -9,7 +9,7 @@ export default function FAQAccordion() {
 	};
 	return (
 		<div className="faq-section faq">
-			<h2 style={{ textAlign: "center", marginBottom: "24px" }}>
+			<h2 className = "faq-title">
 				Frequently Asked Questions
 			</h2>
 			<div className="faq-list">

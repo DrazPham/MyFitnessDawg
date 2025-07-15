@@ -1,7 +1,5 @@
 import Video from "./Video";
-import Star2Img from "assets/images/v1/star2.png";
 import AboutCounter from "./AboutCounter";
-
 function About() {
 	return (
 		<div className="section">
@@ -19,5 +17,4 @@ function About() {
 		</div>
 	);
 }
-
 export default About;

@@ -32,5 +32,4 @@ function AboutCounter() {
 		</div>
 	);
 }
-
 export default AboutCounter;

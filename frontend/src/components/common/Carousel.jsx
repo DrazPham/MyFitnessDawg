@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import 'assets/css/blog/carousel.css';
-
 const Carousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -11,7 +10,6 @@ const Carousel = ({ images }) => {
   const goToNext = () => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
-
   return (
     <div className="carousel">
       <button onClick={goToPrev} className="carousel-btn">←</button>
@@ -20,5 +18,4 @@ const Carousel = ({ images }) => {
     </div>
   );
 };
-
 export default Carousel;

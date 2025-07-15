@@ -1,14 +1,14 @@
 function PrivacyPolicyAgreement() {
   return (
     <div className = "wrapper aximo-all-section policy">
-      <div class="header">
-        <div class="container">
-          <p class="title">Privacy Policy for MyFitnessDawg</p>
+      <div className="header">
+        <div className="container">
+          <p className="title">Privacy Policy for MyFitnessDawg</p>
         </div>
       </div>
-      <div class="translations-content-container">
-        <div class="container">
-          <div id="en" class="tab-content translations-content-item en visible">
+      <div className="translations-content-container">
+        <div className="container">
+          <div id="en" className="tab-content translations-content-item en visible">
             <h1>Privacy Policy</h1>
             <p>Last updated: July 10, 2025</p>
             <p>
@@ -550,8 +550,8 @@ function PrivacyPolicyAgreement() {
           </div>
         </div>
       </div>
-      <div class="footer">
-        <div class="container">
+      <div className="footer">
+        <div className="container">
           <p>
             Generated using&nbsp;
             <a

@@ -1,4 +1,5 @@
 import PrivacyPolicyAgreement from "./components/privacypolicy"
+import "assets/css/privacypolicy/index.css"
 function PrivacyPolicy(){
     return(
         <main>
@@ -6,5 +7,4 @@ function PrivacyPolicy(){
         </main>
     );
 }
-
 export default PrivacyPolicy;

@@ -24,5 +24,4 @@ const faqItems = [
     answer: "Absolutely. Your health and nutrition data is stored securely and will never be shared without your permission.",
   },
 ];
-
 export default faqItems;

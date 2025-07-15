@@ -1,9 +1,4 @@
-import { useState } from "react";
-import PlayBtnImg from "assets/images/v1/play-btn.svg";
-
 function Video() {
-	const [isOpen, setOpen] = useState(false);
-
 	return (
 		<div className="aximo-video-wrap">
 			<iframe
@@ -20,11 +15,7 @@ function Video() {
     		height: '100%'
         }}
   		/>
-			<button className="aximo-video-popup play-btn1 video-init" onClick={() => setOpen(true)}>
-				<img src={PlayBtnImg} alt="PlayBtnImg" />
-			</button>
 		</div>
 	);
 }
-
 export default Video;

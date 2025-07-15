@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "src/firebase/index.jsx";
+import UserInfoContext from "components/functions/UserInfoContext";
 import Footer from "components/footer/main";
 import Header from "components/header/main";
-import UserInfoContext from "components/functions/UserInfoContext";
 
 function LayoutOne() {
 	const [userInfo, setUserInfo] = useState(null);
-	const [isLoading, setIsLoading] = useState(true); // 👈 Trạng thái tải dữ liệu
+	const [isLoading, setIsLoading] = useState(true); 
 
 	useEffect(() => {
     const fetchUserInfo = async () => {
       const uid = localStorage.getItem("userID");
       if (!uid) {
-        setIsLoading(false); // Không có UID, không cần đợi
+        setIsLoading(false); 
         return;
       }
 
@@ -29,18 +29,17 @@ function LayoutOne() {
       } catch (error) {
         console.error("Error loading user info:", error);
       } finally {
-        setIsLoading(false); // ✅ Đảm bảo set false dù thành công hay lỗi
+        setIsLoading(false); 
       }
     };
 
     fetchUserInfo();
   }, []);
 
-  // 🔒 Không render gì nếu chưa có dữ liệu
+
   if (isLoading) {
-    return <div>Loading...</div>; // hoặc spinner
+    return <div>Loading...</div>;
   }
-	console.log(userInfo)
 	return (
 		<UserInfoContext.Provider value={{ userInfo, setUserInfo }}>
 			<Header/>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 export default function Preloader() {
 	const [showLoader, setShowLoader] = useState(true);
 	const [isLoded, setIsLoded] = useState(false);
