@@ -1,5 +1,8 @@
+import { useTranslation } from "react-i18next";
 import CountUp from "react-countup";
 function AboutCounter() {
+	const { t } = useTranslation();
+
 	return (
 		<div className="aximo-counter-wrap">
 			<div className="aximo-counter-data">
@@ -9,7 +12,7 @@ function AboutCounter() {
 					</span>
 					+
 				</h2>
-				<p>Years of experience</p>
+				<p>{t("about.counter.years")}</p>
 			</div>
 			<div className="aximo-counter-data">
 				<h2 className="aximo-counter-number">
@@ -18,7 +21,7 @@ function AboutCounter() {
 					</span>
 					k
 				</h2>
-				<p>Successful projects</p>
+				<p>{t("about.counter.projects")}</p>
 			</div>
 			<div className="aximo-counter-data">
 				<h2 className="aximo-counter-number">
@@ -27,9 +30,10 @@ function AboutCounter() {
 					</span>
 					%
 				</h2>
-				<p>Client satisfaction rate</p>
+				<p>{t("about.counter.satisfaction")}</p>
 			</div>
 		</div>
 	);
 }
+
 export default AboutCounter;

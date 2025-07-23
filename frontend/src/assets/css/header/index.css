@@ -35,3 +35,21 @@ header .aximo-default-btn{
 .light-version-logo{
     max-height:50px
 }
+.selectBox{
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 18px;
+}
+.languageLabel{
+    font-size:18px;
+}
+.selectContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    margin: 1rem;
+    gap: 10px;
+}

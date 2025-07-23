@@ -1,7 +1,9 @@
-import logo from "assets/images/logo/logo.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import logo from "assets/images/logo/logo.png";
 import "assets/css/footer/footermain.css";
 function FooterMain() {
+    const { t } = useTranslation();
   return (
     <div className="container">
       <div className="aximo-footer-top4">
@@ -9,45 +11,38 @@ function FooterMain() {
           <div className="col-xl-4 col-lg-12">
             <div className="aximo-footer-textarea light-one">
               <img id="logo" src={logo} alt="Logo" />
-              <h2>My Fitness Dawg</h2>
-              <p>
-                An intuitive website that empowers you to build personalized
-                meal plans, monitor nutrition, and plan healthy meals
-                effortlessly every day.
-              </p>
+      <h2>{t("footer.title")}</h2>
+      <p>{t("footer.description")}</p>
             </div>
           </div>
           <div className="col-xl-4 col-md-4">
             <div className="aximo-footer-menu extar-margin light-one">
               <div className="aximo-footer-title light-one">
-                <p>Pages</p>
+                <p>{t("footer.pages")}</p>
               </div>
               <ul>
-                <li>
-                  <Link to="/home">Home</Link>
-                </li>
-                <li>
-                  <Link to="/chat">Chat</Link>
-                </li>
-                <li>
-                  <Link to="/track">Track</Link>
-                </li>
-                <li>
-                  <Link to="/exercise">Exercise</Link>
-                </li>
-                <li>
-                  <Link to="/blog">Blog</Link>
-                </li>
-                <li>
-                  <Link to="/privacypolicy">Privacy & Policy</Link>
-                </li>
+                  <li>
+        <Link to="/home">{t("nav.home")}</Link>
+      </li>
+      <li>
+        <Link to="/chat">{t("nav.chat")}</Link>
+      </li>
+      <li>
+        <Link to="/track">{t("nav.track")}</Link>
+      </li>
+      <li>
+        <Link to="/exercise">{t("nav.exercise")}</Link>
+      </li>
+      <li>
+        <Link to="/blog">{t("nav.blog")}</Link>
+      </li>
               </ul>
             </div>
           </div>
           <div className="col-xl-4 col-md-4">
             <div className="aximo-footer-menu light-one m-0">
               <div className="aximo-footer-title light-one">
-                <p>Contact</p>
+                <p>{t("footer.contact")}</p>
               </div>
               <div className="aximo-contact-info2">
                 <ul>

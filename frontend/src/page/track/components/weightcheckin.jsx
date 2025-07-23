@@ -1,9 +1,11 @@
 import { useState, useContext } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "src/firebase/index.jsx";
+import { useTranslation } from "react-i18next";
 import UserInfoContext from "components/functions/UserInfoContext";
 
 const MeasurementForm = () => {
+    const { t } = useTranslation();
   const [formData, setFormData] = useState({
     date: "",
     weight: "",
@@ -66,10 +68,11 @@ const MeasurementForm = () => {
   };
   return (
     <form onSubmit={handleSubmit} className="measurement-form" id="RecordForm">
-      <h2>📝 Body Measurement Tracker</h2>
+      <h2>📝 {t("label.bodyMeasurementTracker")}</h2>
 
-      <div className="checkInGroup">
-        <label>Date:</label>
+
+     <div className="checkInGroup">
+        <label>{t("label.date")}:</label>
         <input
           type="date"
           name="date"
@@ -79,7 +82,7 @@ const MeasurementForm = () => {
       </div>
 
       <div className="checkInGroup">
-        <label>Weight (kg):</label>
+        <label>{t("label.weight")} (kg):</label>
         <input
           type="number"
           name="weight"
@@ -89,7 +92,7 @@ const MeasurementForm = () => {
       </div>
 
       <div className="checkInGroup">
-        <label>Neck (cm):</label>
+        <label>{t("label.neck")} (cm):</label>
         <input
           type="number"
           name="neck"
@@ -99,7 +102,7 @@ const MeasurementForm = () => {
       </div>
 
       <div className="checkInGroup">
-        <label>Waist (cm):</label>
+        <label>{t("label.waist")} (cm):</label>
         <input
           type="number"
           name="waist"
@@ -109,7 +112,7 @@ const MeasurementForm = () => {
       </div>
 
       <div className="checkInGroup">
-        <label>Hips (cm):</label>
+        <label>{t("label.hips")} (cm):</label>
         <input
           type="number"
           name="hips"
@@ -117,8 +120,7 @@ const MeasurementForm = () => {
           onChange={handleChange}
         />
       </div>
-
-      <button type="submit">Save</button>
+            <button type="submit">{t("button.save")}</button>
     </form>
   );
 };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useMenu from "hooks/useMenu";
-import HeaderButton from "./HeaderButton";
 import HeaderLogo from "./HeaderLogo";
+import LanguageSwitcher from "./LanguageDropdown";
 function HeaderNavbar(){
     const {
 		toggleMenu,
@@ -19,9 +19,7 @@ function HeaderNavbar(){
         <div className="container">
 				<nav className="navbar site-navbar">
 					<HeaderLogo />
-					<div className="menu-block-wrapper">
-					</div>
-					<HeaderButton Title = "Get Started" />
+					<LanguageSwitcher/>
 				</nav>
 			</div>
     )

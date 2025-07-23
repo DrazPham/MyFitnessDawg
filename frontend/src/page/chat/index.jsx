@@ -3,6 +3,7 @@ import { doc, getDoc, setDoc, updateDoc, serverTimestamp } from "firebase/firest
 import { db } from "src/firebase/index.jsx";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
+import SpeakTextButton from "../../components/common/speakTextButton";
 import "assets/css/chat/index.css"
 
 function Chat() {
@@ -120,6 +121,7 @@ function Chat() {
               <div className = "chatElements"
               >
                 <ReactMarkdown>{msg.text}</ReactMarkdown>
+                <SpeakTextButton text = {msg.text}/>
               </div>
             </div>
           ))}

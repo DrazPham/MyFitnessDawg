@@ -1,9 +1,16 @@
-const ReportSelector = ({ selectedReport, onChange }) => (
-  <select value={selectedReport} onChange={(e) => onChange(e.target.value)}>
-    <option value="weight">Weight</option>
-    <option value="neck">Neck</option>
-    <option value="waist">Waist</option>
-    <option value="hip">Hip</option>
-  </select>
-);
+import { useTranslation } from "react-i18next";
+
+const ReportSelector = ({ selectedReport, onChange }) => {
+  const { t } = useTranslation();
+
+  return (
+    <select value={selectedReport} onChange={(e) => onChange(e.target.value)}>
+      <option value="weight">{t("report.weight")}</option>
+      <option value="neck">{t("report.neck")}</option>
+      <option value="waist">{t("report.waist")}</option>
+      <option value="hip">{t("report.hip")}</option>
+    </select>
+  );
+};
+
 export default ReportSelector;

@@ -1,0 +1,110 @@
+{
+  "bannerHashtag": "#1 Nutrition Tracker Replica",
+  "bannerQuote": "Fuel your day, the real way.",
+  "bannerDescription": "Master your meals, workouts, and goals—all from one powerful app.",
+  "bannerButton": "Start Today",
+  "faq": {
+    "q1": "Is the app free to use?",
+    "a1": "Yes, our application is completely free for everyone. No charge, no hidden fees.",
+    "q2": "How can I track my calories and nutrients?",
+    "a2": "You can use our built-in chatbot to keep track of your calories, macros, and daily nutrition intake with ease.",
+    "q3": "Does the app support barcode scanning?",
+    "a3": "Currently, barcode scanning is not supported — but we’re working on exciting updates!",
+    "q4": "Can I view my body progress over time?",
+    "a4": "The app can save your weekly body stats including weight, hip, waist, and belly measurements to help you track your journey.",
+    "q5": "How does the app personalize nutrition recommendations?",
+    "a5": "We collect basic appearance data like your height, weight, and exercise intensity to calculate your personal TDEE and BMR.",
+    "q6": "Is my personal data secure?",
+    "a6": "Absolutely. Your health and nutrition data is stored securely and will never be shared without your permission."
+  },
+  "about": {
+    "title": "From Meals to Muscle — All in One Place.",
+    "description": "We listen, adapt, and design with precision — turning client insights into powerful digital solutions.",
+    "counter": {
+      "years": "Years of experience",
+      "projects": "Successful projects",
+      "satisfaction": "Client satisfaction rate"
+    }
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "confirm": "Confirm Password",
+    "signup": {
+      "title": "Fresh Start!",
+      "button": "Hop In!"
+    },
+    "signin": {
+      "title": "Welcome Back!",
+      "button": "Let's go"
+    },
+    "overlay": {
+      "leftTitle": "Back on Track",
+      "leftDesc": "Got an account? Let's reconnect—log in now!",
+      "leftBtn": "Jump Back In",
+      "rightTitle": "Hey there!",
+      "rightDesc": "Jump into your health journey—just fill in your details to begin.",
+      "rightBtn": "Become a Tracker"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "chat": "Chat",
+    "track": "Track",
+    "exercise": "Exercise",
+    "blog": "Blog",
+    "signOut": "Sign Out"
+  },
+  "footer": {
+    "title": "My Fitness Dawg",
+    "description": "An intuitive website that empowers you to build personalized meal plans, monitor nutrition, and plan healthy meals effortlessly every day.",
+    "pages": "Pages",
+    "contact": "Contact"
+  },
+  "calories": {
+    "startedOn": "Started on",
+    "title": "Calories",
+    "description": "Remaining = Goal - Food + Exercise",
+    "baseGoal": "Base Goal",
+    "food": "Food",
+    "exercise": "Exercise"
+  },
+  "macros": {
+    "carbs": "Carbs",
+    "calories": "Calories",
+    "protein": "Protein",
+    "fat": "Fat",
+    "left": "left"
+  },
+  "nutritionGoals": {
+    "title": "Daily Nutrition Goals",
+    "selectLevel": "Select your activity level:"
+  },
+  "activity": {
+    "sedentary": "Sedentary (little/no exercise)",
+    "light": "Light exercise (1-3 days/week)",
+    "moderate": "Moderate exercise (3-5 days/week)",
+    "heavy": "Heavy exercise (6-7 days/week)",
+    "veryIntense": "Very intense training"
+  },
+  "label": {
+    "bodyMeasurementTracker": "Body Measurement Tracker",
+    "date": "Date",
+    "weight": "Weight",
+    "neck": "Neck",
+    "waist": "Waist",
+    "hips": "Hips",
+    "startDate": "Start Date",
+    "endDate": "End Date"
+  },
+  "button": {
+    "save": "Save",
+    "analyze": "Analyze"
+  },
+  "report": {
+    "weight": "Weight",
+    "neck": "Neck",
+    "waist": "Waist",
+    "hip": "Hip"
+  }
+}

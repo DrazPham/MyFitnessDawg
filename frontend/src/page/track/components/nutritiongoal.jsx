@@ -4,17 +4,20 @@ import { db } from "src/firebase/index.jsx";
 import UserInfoContext from "components/functions/UserInfoContext";
 import NutritionItem from "./nutritionitems";
 import Dropdown from "src/components/common/menu/Dropdown.jsx";
-import dropdownOptions from "./dropdownOptions";
+import getDropdownOptions from "./dropdownOptions";
+import { useTranslation } from "react-i18next";
 
 const NutritionGoalsCard = () => {
+  const { t } = useTranslation();
   const userInfoData = useContext(UserInfoContext).userInfo;
 
   const [activityLevel, setActivityLevel] = useState(1.55);
   const [goals, setGoals] = useState({});
+  const [dropdownOptions, setDropdownOptions] = useState([]);
+
   const saveGoalsToFirestore = async (goalsData) => {
     try {
-      const userId = localStorage.getItem("userID"); // hoặc field khác đại diện user ID
-
+      const userId = localStorage.getItem("userID");
       if (!userId) return;
 
       const docRef = doc(db, "users", userId);
@@ -25,34 +28,37 @@ const NutritionGoalsCard = () => {
   };
 
   useEffect(() => {
+    setDropdownOptions(getDropdownOptions(t));
+  }, [t]);
+
+  useEffect(() => {
     if (!userInfoData?.BMR || !userInfoData?.Macros) return;
 
     const calories = userInfoData.BMR * activityLevel;
     const baseCalories = userInfoData.BMR;
-
     const scaleFactor = calories / baseCalories;
 
-    const baseCarbs = userInfoData.Macros.carbs;
-    const baseFat = userInfoData.Macros.fat;
-    const baseProtein = userInfoData.Macros.protein;
-
-    const carbs = baseCarbs * scaleFactor;
-    const fat = baseFat * scaleFactor;
-    const protein = baseProtein * scaleFactor;
+    const carbs = userInfoData.Macros.carbs * scaleFactor;
+    const fat = userInfoData.Macros.fat * scaleFactor;
+    const protein = userInfoData.Macros.protein * scaleFactor;
 
     const goalsData = {
-      Calories: { value: Math.round(calories), unit: "kcal", percentage: null },
-      Carbohydrates: {
+      [t("macros.calories")]: {
+        value: Math.round(calories),
+        unit: "kcal",
+        percentage: null,
+      },
+      [t("macros.carbs")]: {
         value: Math.round(carbs),
         unit: "g",
         percentage: (((carbs * 4) / calories) * 100).toFixed(0) + "%",
       },
-      Fat: {
+      [t("macros.fat")]: {
         value: Math.round(fat),
         unit: "g",
         percentage: (((fat * 9) / calories) * 100).toFixed(0) + "%",
       },
-      Protein: {
+      [t("macros.protein")]: {
         value: Math.round(protein),
         unit: "g",
         percentage: (((protein * 4) / calories) * 100).toFixed(0) + "%",
@@ -61,14 +67,15 @@ const NutritionGoalsCard = () => {
 
     setGoals(goalsData);
     saveGoalsToFirestore(goalsData);
-  }, [activityLevel, userInfoData]);
+  }, [activityLevel, userInfoData, t]);
 
   const handleDropdownChange = (value) => {
     setActivityLevel(parseFloat(value));
   };
+
   return (
     <div className="dailyGoals">
-      <h2>Daily Nutrition Goals</h2>
+      <h2>{t("nutritionGoals.title")}</h2>
       {Object.entries(goals).map(([label, data]) => (
         <NutritionItem
           key={label}
@@ -79,11 +86,12 @@ const NutritionGoalsCard = () => {
         />
       ))}
       <Dropdown
-        label="Select your activity level:"
+        label={t("nutritionGoals.selectLevel")}
         options={dropdownOptions}
         onChange={handleDropdownChange}
       />
     </div>
   );
 };
+
 export default NutritionGoalsCard;

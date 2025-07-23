@@ -7,6 +7,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "./assets/css/app.css";
 import "./assets/css/main.css";
 import "./assets/css/index.css";
+//LINK ĐỔI NGÔN NGỮ
+import "./i18n";
 //ROUTER
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";

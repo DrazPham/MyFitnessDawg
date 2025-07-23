@@ -1,9 +1,13 @@
 import { useState } from "react";
 import useMenu from "hooks/useMenu";
+import { useTranslation } from "react-i18next";
 import Navbar from "components/common/menu/Navbar";
 import { Link } from "react-router-dom";
 import HeaderLogo from "./HeaderLogo";
+import LanguageSwitcher from "./LanguageDropdown";
+
 function HeaderNavbar() {
+  const { t } = useTranslation();
   const {
     toggleMenu,
     mobileSubMenu,
@@ -38,9 +42,11 @@ function HeaderNavbar() {
         </div>
         <div>
           <Link to="/" id = "signOutButton">
-            Sign Out
+           { t("nav.signOut")}
           </Link>
         </div>
+					<LanguageSwitcher/>
+
         <div
           className="mobile-menu-trigger light"
           onClick={() => setToggleMenu(true)}

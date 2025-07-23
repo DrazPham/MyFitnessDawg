@@ -1,15 +1,19 @@
+import { useTranslation } from "react-i18next";
 import Video from "./Video";
 import AboutCounter from "./AboutCounter";
+
 function About() {
+	const { t } = useTranslation();
+
 	return (
 		<div className="section">
 			<div id="aximo-counter"></div>
-				<div className = "title">
-					<h2>From Meals to Muscle — All in One Place.</h2>
-					<div className="col-lg-4 offset-lg-1 d-flex align-items-center">
-						<p> We listen, adapt, and design with precision — turning client insights into powerful digital solutions.</p>
-					</div>
+			<div className="title">
+				<h2>{t("about.title")}</h2>
+				<div className="col-lg-4 offset-lg-1 d-flex align-items-center">
+					<p>{t("about.description")}</p>
 				</div>
+			</div>
 			<div className="AboutContainer">
 				<Video />
 				<AboutCounter />
@@ -17,4 +21,5 @@ function About() {
 		</div>
 	);
 }
+
 export default About;

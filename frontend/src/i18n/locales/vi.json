@@ -1,0 +1,110 @@
+{
+  "bannerHashtag": "#1 Ứng Dụng Theo Dõi Dinh Dưỡng",
+  "bannerQuote": "Tiếp năng lượng cho ngày mới, theo cách thật sự.",
+  "bannerDescription": "Kiểm soát bữa ăn, luyện tập và mục tiêu — tất cả trong một ứng dụng mạnh mẽ.",
+  "bannerButton": "Bắt đầu ngay hôm nay",
+  "faq": {
+    "q1": "Ứng dụng có miễn phí không?",
+    "a1": "Có, ứng dụng của chúng tôi hoàn toàn miễn phí cho tất cả mọi người. Không thu phí, không có chi phí ẩn.",
+    "q2": "Làm sao để tôi theo dõi calo và chất dinh dưỡng?",
+    "a2": "Bạn có thể sử dụng chatbot tích hợp của chúng tôi để theo dõi calo, các chất dinh dưỡng chính và lượng dinh dưỡng hằng ngày một cách dễ dàng.",
+    "q3": "Ứng dụng có hỗ trợ quét mã vạch không?",
+    "a3": "Hiện tại, ứng dụng chưa hỗ trợ quét mã vạch — nhưng chúng tôi đang phát triển tính năng mới đầy hấp dẫn!",
+    "q4": "Tôi có thể xem quá trình thay đổi cơ thể của mình theo thời gian không?",
+    "a4": "Ứng dụng có thể lưu lại các số đo cơ thể hàng tuần như cân nặng, vòng hông, eo và bụng để giúp bạn theo dõi hành trình của mình.",
+    "q5": "Ứng dụng cá nhân hóa khuyến nghị dinh dưỡng như thế nào?",
+    "a5": "Chúng tôi thu thập các dữ liệu cơ bản như chiều cao, cân nặng và mức độ vận động để tính toán TDEE và BMR cá nhân của bạn.",
+    "q6": "Dữ liệu cá nhân của tôi có được bảo mật không?",
+    "a6": "Chắc chắn rồi. Dữ liệu sức khỏe và dinh dưỡng của bạn được lưu trữ an toàn và sẽ không bao giờ được chia sẻ khi chưa có sự cho phép của bạn."
+  },
+  "about": {
+    "title": "Từ bữa ăn đến cơ bắp — Tất cả trong một nơi.",
+    "description": "Chúng tôi lắng nghe, thích ứng và thiết kế một cách chính xác — biến những hiểu biết từ khách hàng thành các giải pháp số hiệu quả.",
+    "counter": {
+      "years": "Năm kinh nghiệm",
+      "projects": "Dự án thành công",
+      "satisfaction": "Tỷ lệ hài lòng của khách hàng"
+    }
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Mật khẩu",
+    "confirm": "Xác nhận mật khẩu",
+    "signup": {
+      "title": "Khởi đầu mới!",
+      "button": "Tham gia ngay"
+    },
+    "signin": {
+      "title": "Chào mừng trở lại!",
+      "button": "Đăng nhập"
+    },
+    "overlay": {
+      "leftTitle": "Quay lại với bạn",
+      "leftDesc": "Đã có tài khoản? Đăng nhập ngay để tiếp tục hành trình.",
+      "leftBtn": "Đăng nhập",
+      "rightTitle": "Xin chào!",
+      "rightDesc": "Hãy bắt đầu hành trình sức khỏe — chỉ cần điền thông tin bên dưới.",
+      "rightBtn": "Tạo tài khoản"
+    }
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "chat": "Trò chuyện",
+    "track": "Theo dõi",
+    "exercise": "Bài tập",
+    "blog": "Bài viết",
+    "signOut": "Đăng xuất"
+  },
+  "footer": {
+    "title": "My Fitness Dawg",
+    "description": "Một trang web trực quan giúp bạn xây dựng thực đơn cá nhân, theo dõi dinh dưỡng và lên kế hoạch bữa ăn lành mạnh mỗi ngày một cách dễ dàng.",
+    "pages": "Trang",
+    "contact": "Liên hệ"
+  },
+  "calories": {
+    "startedOn": "Bắt đầu từ",
+    "title": "Lượng calo",
+    "description": "Còn lại = Mục tiêu - Đã ăn + Vận động",
+    "baseGoal": "Mục tiêu cơ bản",
+    "food": "Đã ăn",
+    "exercise": "Vận động"
+  },
+  "macros": {
+    "carbs": "Tinh bột",
+    "protein": "Đạm",
+    "fat": "Chất béo",
+    "left": "còn lại",
+    "calories": "Calo"
+  },
+  "nutritionGoals": {
+    "title": "Mục tiêu dinh dưỡng hàng ngày",
+    "selectLevel": "Chọn mức độ vận động của bạn:"
+  },
+  "activity": {
+    "sedentary": "Ít vận động (hầu như không tập)",
+    "light": "Vận động nhẹ (1-3 ngày/tuần)",
+    "moderate": "Vận động vừa (3-5 ngày/tuần)",
+    "heavy": "Vận động nặng (6-7 ngày/tuần)",
+    "veryIntense": "Tập luyện rất cường độ cao"
+  },
+  "label": {
+    "bodyMeasurementTracker": "Theo dõi chỉ số cơ thể",
+    "date": "Ngày",
+    "weight": "Cân nặng",
+    "neck": "Vòng cổ",
+    "waist": "Vòng eo",
+    "hips": "Vòng hông",
+    "startDate": "Ngày bắt đầu",
+    "endDate": "Ngày kết thúc"
+  },
+  "button": {
+    "save": "Lưu",
+    "analyze": "Phân tích"
+  },
+  "report": {
+    "weight": "Cân nặng",
+    "neck": "Cổ",
+    "waist": "Eo",
+    "hip": "Hông"
+  }
+}

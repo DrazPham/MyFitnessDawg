@@ -1,9 +1,6 @@
-import React from 'react';
 import FitnessBanner from './components/FitnessBanner';
-
 import About from "src/components/common/about/index.jsx";
 import FaqAccordion from "src/components/faq/FaqAccordion.jsx";
-
 import "assets/css/base/index.css";
 
 function Base() {

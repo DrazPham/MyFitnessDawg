@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 /* eslint-disable react/prop-types */
+import { useTranslation } from "react-i18next";
 import Dropdown from "./Dropdown";
 function NavItem({ route, depthLevel, mobileSubMenu, handleSubMenu, mobileSubMenuSub, handleSubMenuSub }) {
+	  const { t } = useTranslation();
 	function handleClick(e) {
 		e.stopPropagation();
 
@@ -47,7 +49,7 @@ function NavItem({ route, depthLevel, mobileSubMenu, handleSubMenu, mobileSubMen
 	) : (
 		<li className={`${depthLevel > 0 ? "sub-menu--item" : "nav-item"}`} data-id={route.href}>
 			<Link to={`/${route.href}`} className={`${depthLevel > 0 ? "" : "nav-link-item"}`}>
-				{route.title}
+				{t(`nav.${route.title.toLowerCase()}`)}
 			</Link>
 		</li>
 	);

@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { auth } from "src/firebase/index.jsx";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword,} from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import "assets/css/account/index.css";
 
 function AccountForm() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isSignUpActive, setIsSignUpActive] = useState(false);
   const [formData, setFormData] = useState({
@@ -17,9 +22,8 @@ function AccountForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-};
-
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   useEffect(() => {
     if (notification) {
@@ -92,70 +96,67 @@ function AccountForm() {
     >
       <div className="form-container sign-up-container">
         <form onSubmit={handleSubmit}>
-          <h1>Fresh Start!</h1>
+          <h1>{t("auth.signup.title")}</h1>
           <input
             type="email"
             name="email"
             value={formData.email}
-            placeholder="Email"
+            placeholder={t("auth.email")}
             onChange={handleChange}
           />
           <input
             type="password"
             name="password"
             value={formData.password}
-            placeholder="Password"
+            placeholder={t("auth.password")}
             onChange={handleChange}
           />
           <input
             type="password"
             name="confirm-password"
             value={formData["confirm-password"] ?? ""}
-            placeholder="Confirm Password"
+            placeholder={t("auth.confirm")}
             onChange={handleChange}
           />
-          <button type="submit">Hop In!</button>
+          <button type="submit">{t("auth.signup.button")}</button>
           {notification && <p className="notification">{notification}</p>}
         </form>
       </div>
       <div className="form-container sign-in-container">
         <form onSubmit={handleLogin}>
-          <h1>Welcome Back!</h1>
+          <h1>{t("auth.signin.title")}</h1>
           <input
             type="email"
             name="email"
             value={formData.email}
-            placeholder="Email"
+            placeholder={t("auth.email")}
             onChange={handleChange}
           />
           <input
             type="password"
             name="password"
             value={formData.password}
-            placeholder="Password"
+            placeholder={t("auth.password")}
             onChange={handleChange}
           />
-          <button type="submit">Let's go</button>
-          {notification && <p className="notification">{notification}</p>}
+          <button type="submit">{t("auth.signin.button")}</button>
         </form>
       </div>
 
       <div className="overlay-container">
         <div className="overlay">
           <div className="overlay-panel overlay-left">
-            <h1>Back on Track</h1>
-            <p>Got an Form? Let's reconnect—log in now!</p>
+            <h1>{t("auth.overlay.leftTitle")}</h1>
+            <p>{t("auth.overlay.leftDesc")}</p>
             <button className="ghost" onClick={() => setIsSignUpActive(false)}>
-              Jump Back In
+              {t("auth.overlay.leftBtn")}
             </button>
           </div>
           <div className="overlay-panel overlay-right">
-            <h1>Hey there!</h1>
-            <p>
-              Jump into your health journey—just fill in your details to begin.
-            </p>
+            <h1>{t("auth.overlay.rightTitle")}</h1>
+            <p>{t("auth.overlay.rightDesc")}</p>
             <button className="ghost" onClick={() => setIsSignUpActive(true)}>
-              Become a Tracker
+              {t("auth.overlay.rightBtn")}
             </button>
           </div>
         </div>

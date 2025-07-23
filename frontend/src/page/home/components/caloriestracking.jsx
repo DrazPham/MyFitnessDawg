@@ -4,21 +4,23 @@ import Progress from "./progress";
 import { FaBullseye, FaUtensils, FaFire } from 'react-icons/fa';
 import calculateNutritionTotals from "components/functions/calculateNutritionTotals";
 import calculateExerciseCalories from "components/functions/calculateExerciseCalories";
+import { useTranslation } from "react-i18next";
 const CaloriesTracking = () => {
+	const { t } = useTranslation();
 	const userInfoData = useContext(UserInfoContext).userInfo;
 	const totalFoodCalories = calculateNutritionTotals(userInfoData);
 	const totalExerciseCalories = calculateExerciseCalories(userInfoData);
 	return (
 		<div className="container aximo-all-section tracking">
-			<h1>Calories</h1>
-			<p>Remaining = Goal - Food + Exercise</p>
+      		<h1>{t("calories.title")}</h1>
+      		<p>{t("calories.description")}</p>
 			<div className = "tracker">
 				<Progress  current ={totalFoodCalories.calories} goal = {userInfoData.Calories} exercise={totalExerciseCalories}/>
 				<div className="detail">
 					<div className="caloriesTrackGroups">
 						<div className="stat-icon">{<FaBullseye/>}</div>
 						<div>
-							<h1>Base Goal</h1>
+							      <h1>{t("calories.baseGoal")}</h1>
 							<p>
 								{userInfoData.Calories}
 								</p>
@@ -27,7 +29,7 @@ const CaloriesTracking = () => {
 					<div className="caloriesTrackGroups">
 						<div className="stat-icon">{<FaUtensils/>}</div>
 						<div>
-							<h1>Food</h1>
+							      <h1>{t("calories.food")}</h1>
 							<p>
 								{totalFoodCalories.calories}
 								</p>
@@ -36,9 +38,9 @@ const CaloriesTracking = () => {
 					<div className="caloriesTrackGroups">
 						<div className="stat-icon">{<FaFire/>}</div>
 						<div>
-							<h1>Exercise</h1>
+							      <h1>{t("calories.exercise")}</h1>
 							<p>
-								{totalExerciseCalories}
+								{totalExerciseCalories.exercise}
 								</p>
 						</div>
 					</div>

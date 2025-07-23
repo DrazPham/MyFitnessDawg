@@ -7,7 +7,6 @@ const CircularProgress = ({ current, label = "Remaining", goal,exercise = 0 }) =
       <div className = "circularInner"/>
       <div className = "progressInfo">
         <div className = "progressNumbers">{goal - current + exercise}</div>
-        <div className = "progressLabel">{label}</div>
       </div>
     </div>
   );
