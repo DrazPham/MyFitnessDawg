@@ -3,16 +3,20 @@ import { useTranslation } from "react-i18next";
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
-  const handleChange = (e) => {
-    i18n.changeLanguage(e.target.value);
+  const handleChange = (event) => {
+    const selectedLang = event.target.value;
+    i18n.changeLanguage(selectedLang);
+    localStorage.setItem("lang", selectedLang);
+    console.log("1")
   };
 
   return (
-    <div className = "selectContainer">
-      <span className = "languageLabel">🌐 Language:</span>
-      <select className = "selectBox"
+    <div className="selectContainer">
+      <span className="languageLabel">🌐 Language:</span>
+      <select
+        className="selectBox"
         onChange={handleChange}
-        value={i18n.language}
+        value={i18n.language || localStorage.getItem("lang") || "en"}
       >
         <option value="en">English</option>
         <option value="vi">Tiếng Việt</option>
