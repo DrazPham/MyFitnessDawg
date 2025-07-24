@@ -1,15 +1,17 @@
+import { useTranslation } from "react-i18next";
 import speakText from "../functions/speakText";
 
-const toggleSpeakText = (text) => {
-  speakText(text)
-};
+function SpeakTextButton({ text, lang }) {
+  const toggleSpeakText = () => {
+    speakText(text, lang);
+  };
 
-function SpeakTextButton({ text }){
-    return(
-    <button onClick={() => toggleSpeakText(text)}>
-        Read Text
+  return (
+    <button onClick={toggleSpeakText}>
+      Read Text
     </button>
-    )
+  );
 }
+
 
 export default SpeakTextButton;

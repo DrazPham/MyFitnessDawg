@@ -1,19 +1,36 @@
 import { useState, useEffect } from "react";
-import { doc, getDoc, setDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "src/firebase/index.jsx";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import SpeakTextButton from "../../components/common/speakTextButton";
-import "assets/css/chat/index.css"
+import "assets/css/chat/index.css";
 
 function Chat() {
+  const { i18n } = useTranslation();
   const [userInput, setUserInput] = useState("");
-  const [messages, setMessages] = useState([
-    {
-      sender: "bot",
-      text: " Hello! Please enter a food item along with the amount in grams, and I will add its nutritional values to your cart. If no amount is specified, I will assume 100 grams by default.\n\nExample: *White rice 50g*",
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
+  useEffect(() => {
+    if (i18n.language === "vi") {
+      setMessages([{
+        sender: "bot",
+        text: "Xin chào! Vui lòng nhập tên thực phẩm kèm theo số lượng tính bằng gam, tôi sẽ thêm giá trị dinh dưỡng của nó vào giỏ hàng của bạn. Nếu không ghi rõ số lượng, tôi sẽ mặc định là 100 gam.\n\nVí dụ: Gạo trắng 50g",
+      }]);
+    } else {
+      setMessages([{
+        sender: "bot",
+        text: "Hello! Please enter a food item along with the amount in grams, and I will add its nutritional values to your cart. If no amount is specified, I will assume 100 grams by default.\n\nExample: *White rice 50g*",
+      }]);
+    }
+  }, [i18n.language]);
+
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
   const userID = localStorage.getItem("userID");
@@ -33,21 +50,33 @@ function Chat() {
       const botText = res.data.reply;
       const botMessage = { sender: "bot", text: botText };
       setMessages((prev) => [...prev, botMessage]);
-      const match = botText.match(
-        /Thông tin về (.+?) \(trên ([\d.]+)g\):\s*- Calories: ([\d.]+) kcal\s*- Protein: ([\d.]+)g\s*- Fat: ([\d.]+)g\s*- Carbs: ([\d.]+)g/i
+      const gramsMatch = botText.match(/(\d+(?:\.\d+)?)\s*(?:g|gram|grams)/i);
+      const proteinMatch = botText.match(
+        /(\d+(?:\.\d+)?)\s*(?:g|gram|grams)\s+of\s+protein/i
       );
+      const fatMatch = botText.match(
+        /(\d+(?:\.\d+)?)\s*(?:g|gram|grams)[^.\d]*?fat/i
+      );
+      const carbsMatch = botText.match(
+        /(\d+(?:\.\d+)?)\s*(?:g|gram|grams)\s+of\s+carbs|no\s+carbs|carb[-\s]?free|completely\s+carb[-\s]?free/i
+      );
+      const caloriesMatch = botText.match(
+        /(\d+(?:\.\d+)?)\s*(?:kcal|calories)/i
+      );
+      if (proteinMatch && fatMatch && caloriesMatch && gramsMatch) {
+  const grams = parseFloat(gramsMatch[1]);
+  const protein = parseFloat(proteinMatch[1]);
+  const fat = parseFloat(fatMatch[1]);
+  const carbs = carbsMatch
+    ? carbsMatch[1]
+      ? parseFloat(carbsMatch[1])
+      : 0
+    : 0;
+  const calories = parseFloat(caloriesMatch[1]);
 
-      if (match) {
-        const name = match[1];
-        const grams = parseFloat(match[2]);
-        const calories = parseFloat(match[3]);
-        const protein = parseFloat(match[4]);
-        const fat = parseFloat(match[5]);
-        const carbs = parseFloat(match[6]);
-
-        const foodItem = { name, grams, calories, protein, fat, carbs };
-        setCart((prev) => [...prev, foodItem]); 
-      }
+  const foodItem = { calories, protein, fat, carbs, grams };
+  setCart((prev) => [...prev, foodItem]);}
+  
     } catch (error) {
       const errorMessage = {
         sender: "bot",
@@ -61,81 +90,89 @@ function Chat() {
     setLoading(false);
   };
   useEffect(() => {
-  const updateFirestoreCart = async () => {
-    if (!userID || cart.length === 0) return;
+    const updateFirestoreCart = async () => {
+      if (!userID || cart.length === 0) return;
 
-    try {
-      const docRef = doc(db, "users", userID);
-      const docSnap = await getDoc(docRef);
+      try {
+        const docRef = doc(db, "users", userID);
+        const docSnap = await getDoc(docRef);
 
-      const today = new Date().toISOString().split("T")[0]; // Lấy định dạng yyyy-mm-dd
-      let resetCart = false;
-      let updatedCart = [];
+        const today = new Date().toISOString().split("T")[0]; // Lấy định dạng yyyy-mm-dd
+        let resetCart = false;
+        let updatedCart = [];
 
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        const existingCart = data.Cart || [];
-        const lastUpdatedDate = data.lastCartUpdate?.toDate?.().toISOString().split("T")[0];
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const existingCart = data.Cart || [];
+          const lastUpdatedDate = data.lastCartUpdate
+            ?.toDate?.()
+            .toISOString()
+            .split("T")[0];
 
-        if (lastUpdatedDate !== today) {
-          resetCart = true;
-          updatedCart = [...cart];
+          if (lastUpdatedDate !== today) {
+            resetCart = true;
+            updatedCart = [...cart];
+          } else {
+            updatedCart = [...existingCart, ...cart];
+          }
         } else {
-          updatedCart = [...existingCart, ...cart];
+          updatedCart = [...cart];
+          resetCart = true;
         }
-      } else {
-        updatedCart = [...cart];
-        resetCart = true;
+
+        await setDoc(
+          docRef,
+          {
+            Cart: updatedCart,
+            lastCartUpdate: serverTimestamp(),
+          },
+          { merge: true }
+        );
+
+        if (resetCart) {
+          console.log("🗓 Cart được reset do ngày mới:", today);
+        }
+
+        console.log("✅ Firestore cập nhật thành công:", updatedCart);
+      } catch (err) {
+        console.error("❌ Lỗi khi cập nhật Firestore:", err);
       }
+    };
 
-      await setDoc(docRef, {
-        Cart: updatedCart,
-        lastCartUpdate: serverTimestamp()
-      }, { merge: true });
-
-      if (resetCart) {
-        console.log("🗓 Cart được reset do ngày mới:", today);
-      }
-
-      console.log("✅ Firestore cập nhật thành công:", updatedCart);
-    } catch (err) {
-      console.error("❌ Lỗi khi cập nhật Firestore:", err);
-    }
-  };
-
-  updateFirestoreCart();
-}, [cart]);
+    updateFirestoreCart();
+  }, [cart]);
 
   return (
     <main>
-      <div
-        className="wrapper aximo-all-section chat">
-        <div className ="chatTop">
+      <div className="wrapper aximo-all-section chat">
+        <div className="chatTop">
           {messages.map((msg, idx) => (
-            <div className = "chatElementsOutter"
+            <div
+              className="chatElementsOutter"
               key={idx}
               style={{
-                justifyContent: msg.sender === "user" ? "flex-end" : "flex-start",
+                justifyContent:
+                  msg.sender === "user" ? "flex-end" : "flex-start",
               }}
             >
-              <div className = "chatElements"
-              >
+              <div className="chatElements">
                 <ReactMarkdown>{msg.text}</ReactMarkdown>
-                <SpeakTextButton text = {msg.text}/>
+                <SpeakTextButton text={msg.text} lang={i18n.language} />
               </div>
             </div>
           ))}
         </div>
 
-        <div className ="chatBottomGroup">
+        <div className="chatBottomGroup">
           <input
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
             placeholder="Nhập tin nhắn..."
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            className = "chatInput"
+            className="chatInput"
           />
-          <button className = "chatButton"
+          <button
+            className="chatButton"
             onClick={sendMessage}
             disabled={loading}
           >

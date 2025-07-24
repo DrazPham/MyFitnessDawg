@@ -1,19 +1,36 @@
 import { useState, useEffect } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "src/firebase/index.jsx";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import SpeakTextButton from "../../components/common/speakTextButton";
 import "assets/css/chat/index.css";
 
+
 function Exercise() {
-  const [userInput, setUserInput] = useState("");
-  const [messages, setMessages] = useState([
-    {
-      sender: "bot",
-      text: "Hello! You can enter a physical activity along with the duration in minutes. If no time is provided, I will assume 60 minutes by default.\n\nExample: *Running 30 minutes",
-    },
-  ]);
+    const { i18n } = useTranslation();
+    const [userInput, setUserInput] = useState("");
+    const [messages, setMessages] = useState([]);
+    useEffect(() => {
+      if (i18n.language === "vi") {
+        setMessages([{
+          sender: "bot",
+          text: "Xin chào! Bạn có thể nhập một hoạt động thể chất kèm theo thời gian thực hiện tính bằng phút. Nếu không ghi rõ thời gian, tôi sẽ mặc định là 60 phút. Ví dụ: *Chạy bộ 30 phút*",
+        }]);
+      } else {
+        setMessages([{
+          sender: "bot",
+          text: "Hello! You can enter a physical activity along with the duration in minutes. If no time is provided, I will assume 60 minutes by default.\n\nExample: *Running 30 minutes",
+        }]);
+      }
+    }, [i18n.language]);
   const [loading, setLoading] = useState(false);
   const [exercise, setExercise] = useState([]);
   const userID = localStorage.getItem("userID");
@@ -34,20 +51,17 @@ function Exercise() {
       const botMessage = { sender: "bot", text: botText };
       setMessages((prev) => [...prev, botMessage]);
 
-      const match = botText.match(
-        /Thông tin về bài tập \*\*(.+?)\*\* trong (\d+(?:\.\d+)?) phút:\s*- Calories tiêu hao: \*\*(\d+(?:\.\d+)?) kcal\*\*/i
-      );
-      console.log(botText);
-      console.log(match);
+const caloriesMatch = botText.match(/(\d+(?:\.\d+)?)\s*(?:kcal|calories|calo|Calo)/i);
+const minutesMatch = botText.match(/(\d+(?:\.\d+)?)\s*(?:minutes?|mins?)/i);
 
-      if (match) {
-        const name = match[1];
-        const minutes = parseFloat(match[2]);
-        const calories = parseFloat(match[3]);
+if (caloriesMatch) {
+  const calories = parseFloat(caloriesMatch[1]);
+  const minutes = minutesMatch ? parseFloat(minutesMatch[1]) : 60;
 
-        const exerciseItem = { name, minutes, calories };
-        setExercise((prev) => [...prev, exerciseItem]);
-      }
+  const exerciseItem = { calories, minutes };
+  setExercise((prev) => [...prev, exerciseItem]);
+}
+
     } catch (error) {
       const errorMessage = {
         sender: "bot",
@@ -125,7 +139,7 @@ function Exercise() {
             >
               <div className="chatElements">
                 <ReactMarkdown>{msg.text}</ReactMarkdown>
-                <SpeakTextButton text = {msg.text}/>
+                <SpeakTextButton text={msg.text} lang={i18n.language} />
               </div>
             </div>
           ))}
