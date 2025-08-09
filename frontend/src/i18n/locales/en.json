@@ -22,10 +22,19 @@
     "title": "From Meals to Muscle — All in One Place.",
     "description": "We listen, adapt, and design with precision — turning client insights into powerful digital solutions.",
     "counter": {
-      "years": "Years of experience",
-      "projects": "Successful projects",
-      "satisfaction": "Client satisfaction rate"
+      "years": "Nutrition consultation hours",
+      "projects": "Clients reaching their weight goals within 3 months",
+      "satisfaction": "Users improving digestive health"
     }
+  },
+  "notify": {
+    "fillRequired": "Please fill all the required fields",
+    "passwordMismatch": "Passwords do not match",
+    "registrationSuccess": "Registration successful!",
+    "emailUsed": "Email has been used",
+    "enterEmailPassword": "Please enter both email and password",
+    "welcomeBack": "Welcome back!",
+    "invalidCredentials": "Invalid credentials"
   },
   "auth": {
     "email": "Email",
@@ -106,7 +115,7 @@
     "weight": "Weight",
     "neck": "Neck",
     "waist": "Waist",
-    "hip": "Hip"
+    "hip": "Hips"
   },
   "userForm": {
   "firstname": "Firstname",

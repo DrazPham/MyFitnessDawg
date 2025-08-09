@@ -4,7 +4,7 @@ const Chart = ({ data }) => (
     <XAxis dataKey="date" />
     <YAxis />
     <Tooltip />
-    <Line type="monotone" dataKey="weight" stroke="#8884d8" />
+    <Line type="monotone" dataKey="value" stroke="#8884d8" />
   </LineChart>
 );
 export default Chart;

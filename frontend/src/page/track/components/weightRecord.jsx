@@ -8,33 +8,32 @@ import { useTranslation } from "react-i18next";
 const WeightRecord = ({ onDateChange }) => {
   const { t } = useTranslation();
   const userInfoData = useContext(UserInfoContext).userInfo;
-
   const getFilteredSortedData = (
-    records,
-    startDate,
-    endDate,
-    sortOrder = "asc"
-  ) => {
-    const data = records
-      .filter((record) => {
-        const recordDate = new Date(record.date);
-        const start = startDate ? new Date(startDate) : null;
-        const end = endDate ? new Date(endDate) : null;
+  records,
+  startDate,
+  endDate,
+  reportType,
+  sortOrder = "asc"
+) => {
+  return records
+    .filter((record) => {
+      const recordDate = new Date(record.date);
+      const start = startDate ? new Date(startDate) : null;
+      const end = endDate ? new Date(endDate) : null;
+      return (!start || recordDate >= start) && (!end || recordDate <= end);
+    })
+    .map((record) => ({
+      date: record.date,
+      value: record[reportType] ?? null, // lấy dữ liệu theo reportType
+    }))
+    .sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+    });
+};
 
-        return (!start || recordDate >= start) && (!end || recordDate <= end);
-      })
-      .map((record) => ({
-        date: record.date,
-        weight: record.weight,
-      }))
-      .sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-        return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
-      });
-
-    return data;
-  };
+    
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -42,7 +41,8 @@ const WeightRecord = ({ onDateChange }) => {
   const [data, setData] = useState([]);
 
   const records = userInfoData?.records || [];
-
+  console.log(userInfoData.records);
+  
   const handleStartChange = (e) => {
     const value = e.target.value;
     setStartDate(value);
@@ -59,9 +59,11 @@ const WeightRecord = ({ onDateChange }) => {
     }
   };
 
-  const handleAnalyze = () => {
-    setData(getFilteredSortedData(records, startDate, endDate));
-  };
+const handleAnalyze = () => {    
+  setData(getFilteredSortedData(records, startDate, endDate, reportType));
+};
+console.log(data);
+
 
   return (
     <div className="reportTable">

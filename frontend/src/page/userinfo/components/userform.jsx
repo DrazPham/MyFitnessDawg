@@ -85,6 +85,7 @@ function UserForm() {
       Calories: Math.round(calories),
       Macros: macros,
       Exercise: [], // có thể reset mỗi ngày nếu cần
+      Cart:[]
     });
 
     alert(

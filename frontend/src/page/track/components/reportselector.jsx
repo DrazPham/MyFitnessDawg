@@ -8,7 +8,7 @@ const ReportSelector = ({ selectedReport, onChange }) => {
       <option value="weight">{t("report.weight")}</option>
       <option value="neck">{t("report.neck")}</option>
       <option value="waist">{t("report.waist")}</option>
-      <option value="hip">{t("report.hip")}</option>
+      <option value="hips">{t("report.hip")}</option>
     </select>
   );
 };

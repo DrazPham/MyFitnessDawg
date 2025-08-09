@@ -21,12 +21,12 @@ function Chat() {
     if (i18n.language === "vi") {
       setMessages([{
         sender: "bot",
-        text: "Xin chào! Vui lòng nhập tên thực phẩm kèm theo số lượng tính bằng gam, tôi sẽ thêm giá trị dinh dưỡng của nó vào giỏ hàng của bạn. Nếu không ghi rõ số lượng, tôi sẽ mặc định là 100 gam.\n\nVí dụ: Gạo trắng 50g",
+        text: "Xin chào! Vui lòng nhập tên thực phẩm kèm theo số lượng tính bằng gam, tôi sẽ thêm giá trị dinh dưỡng của nó vào giỏ hàng của bạn. Nếu không ghi rõ số lượng, tôi sẽ mặc định là 100 gam.\n\n Nếu chưa biết chọn món gì hãy nhập 'món' hoặc 'thực đơn', chúng tôi sẽ đề xuất các món ăn có sẵn  ",
       }]);
     } else {
       setMessages([{
         sender: "bot",
-        text: "Hello! Please enter a food item along with the amount in grams, and I will add its nutritional values to your cart. If no amount is specified, I will assume 100 grams by default.\n\nExample: *White rice 50g*",
+        text: "Hello! Please enter a food item along with the amount in grams, and I will add its nutritional values to your cart. If no amount is specified, I will assume 100 grams by default.\n\nIf you are not sure what to choose, type “menu” and we will suggest available options.",
       }]);
     }
   }, [i18n.language]);
@@ -48,6 +48,10 @@ function Chat() {
       });
 
       const botText = res.data.reply;
+      const test = res.data;
+      console.log(test);
+      
+      
       const botMessage = { sender: "bot", text: botText };
       setMessages((prev) => [...prev, botMessage]);
       const gramsMatch = botText.match(/(\d+(?:\.\d+)?)\s*(?:g|gram|grams)/i);
@@ -62,7 +66,7 @@ function Chat() {
       );
       const caloriesMatch = botText.match(
         /(\d+(?:\.\d+)?)\s*(?:kcal|calories)/i
-      );
+      );      
       if (proteinMatch && fatMatch && caloriesMatch && gramsMatch) {
   const grams = parseFloat(gramsMatch[1]);
   const protein = parseFloat(proteinMatch[1]);

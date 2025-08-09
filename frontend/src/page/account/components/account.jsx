@@ -33,61 +33,62 @@ function AccountForm() {
   }, [notification]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password } = formData;
+  e.preventDefault();
+  const { email, password } = formData;
 
-    if (!email || !password) {
-      setNotification("Please fill all the required fields");
-      return;
-    }
+  if (!email || !password) {
+    setNotification(t("notify.fillRequired"));
+    return;
+  }
 
-    if (formData.password !== formData["confirm-password"]) {
-      setNotification("Passwords do not match");
-      return;
-    }
+  if (formData.password !== formData["confirm-password"]) {
+    setNotification(t("notify.passwordMismatch"));
+    return;
+  }
 
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const uid = userCredential.user.uid;
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const uid = userCredential.user.uid;
 
-      localStorage.setItem("userID", uid);
-      setNotification("Registration successful!");
-      navigate("/userinfo");
-    } catch (error) {
-      console.error("Error creating user:", error.code, error.message);
-      setNotification("Email has been used");
-    }
-  };
+    localStorage.setItem("userID", uid);
+    setNotification(t("notify.registrationSuccess"));
+    navigate("/userinfo");
+  } catch (error) {
+    console.error("Error creating user:", error.code, error.message);
+    setNotification(t("notify.emailUsed"));
+  }
+};
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const { email, password } = formData;
+const handleLogin = async (e) => {
+  e.preventDefault();
+  const { email, password } = formData;
 
-    if (!email || !password) {
-      setNotification("Please enter both email and password");
-      return;
-    }
+  if (!email || !password) {
+    setNotification(t("notify.enterEmailPassword"));
+    return;
+  }
 
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const uid = userCredential.user.uid;
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const uid = userCredential.user.uid;
 
-      localStorage.setItem("userID", uid);
-      setNotification("Welcome back!");
-      navigate("/home");
-    } catch (error) {
-      console.error("Login error:", error.code, error.message);
-      setNotification("Invalid credentials");
-    }
-  };
+    localStorage.setItem("userID", uid);
+    setNotification(t("notify.welcomeBack"));
+    navigate("/home");
+  } catch (error) {
+    console.error("Login error:", error.code, error.message);
+    setNotification(t("notify.invalidCredentials"));
+  }
+};
+
 
   return (
     <div

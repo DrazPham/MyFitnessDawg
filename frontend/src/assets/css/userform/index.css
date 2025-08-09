@@ -3,6 +3,9 @@
     flex-direction: column;
     gap: 2rem;
 }
+.userinfo{
+  margin: 2vh 0 10vh 0 ;
+}
 .group{
     width: 100%;
     display: flex;

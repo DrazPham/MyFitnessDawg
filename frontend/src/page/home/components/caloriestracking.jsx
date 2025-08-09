@@ -40,7 +40,7 @@ const CaloriesTracking = () => {
 						<div>
 							      <h1>{t("calories.exercise")}</h1>
 							<p>
-								{totalExerciseCalories.exercise||0}
+								{totalExerciseCalories||0}
 								</p>
 						</div>
 					</div>

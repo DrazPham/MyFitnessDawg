@@ -4,7 +4,6 @@ import {
   doc,
   getDoc,
   setDoc,
-  updateDoc,
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "src/firebase/index.jsx";
@@ -22,12 +21,12 @@ function Exercise() {
       if (i18n.language === "vi") {
         setMessages([{
           sender: "bot",
-          text: "Xin chào! Bạn có thể nhập một hoạt động thể chất kèm theo thời gian thực hiện tính bằng phút. Nếu không ghi rõ thời gian, tôi sẽ mặc định là 60 phút. Ví dụ: *Chạy bộ 30 phút*",
+          text: "Xin chào! Bạn có thể nhập một hoạt động thể chất kèm theo thời gian thực hiện tính bằng phút. Nếu không ghi rõ thời gian, tôi sẽ mặc định là 60 phút. Ví dụ: Nếu chưa biết chọn hoạt động nào, hãy nhập 'danh sách' hoặc 'hoạt động', chúng tôi sẽ đề xuất các  hoạt động có sẵn  ",
         }]);
       } else {
         setMessages([{
           sender: "bot",
-          text: "Hello! You can enter a physical activity along with the duration in minutes. If no time is provided, I will assume 60 minutes by default.\n\nExample: *Running 30 minutes",
+          text: "Hello! You can enter a physical activity along with the duration in minutes. If no time is provided, I will assume 60 minutes by default.\n\nIf you are not sure what to choose, type 'list' and we will suggest available options.",
         }]);
       }
     }, [i18n.language]);
@@ -85,7 +84,7 @@ if (caloriesMatch) {
 
       const today = new Date().toISOString().split("T")[0]; // Lấy định dạng yyyy-mm-dd
       let resetCart = false;
-      let updatedCart = [];
+      let updatedExercise = [];
 
       if (docSnap.exists()) {
         const data = docSnap.data();
@@ -95,17 +94,17 @@ if (caloriesMatch) {
         if (lastUpdatedDate !== today) {
           // Ngày mới => reset exercise
           resetCart = true;
-          updatedCart = [...exercise];
+          updatedExercise = [...exercise];
         } else {
-          updatedCart = [...existingCart, ...exercise];
+          updatedExercise = [...existingCart, ...exercise];
         }
       } else {
-        updatedCart = [...exercise];
+        updatedExercise = [...exercise];
         resetCart = true;
       }
 
       await setDoc(docRef, {
-        Cart: updatedCart,
+        Exercise: updatedExercise,
         lastCartUpdate: serverTimestamp()
       }, { merge: true });
 
@@ -113,7 +112,7 @@ if (caloriesMatch) {
         console.log("🗓 Cart được reset do ngày mới:", today);
       }
 
-      console.log("✅ Firestore cập nhật thành công:", updatedCart);
+      console.log("✅ Firestore cập nhật thành công:", updatedExercise);
     } catch (err) {
       console.error("❌ Lỗi khi cập nhật Firestore:", err);
     }
