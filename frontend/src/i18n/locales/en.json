@@ -152,5 +152,7 @@
   "protein": "Protein",
   "fat": "Fat",
   "carbs": "Carbohydrates"
-}
+},
+"placeholderChat": "Enter the food you ate today",
+"placeholderExercise": "Enter the activity you did"
 }

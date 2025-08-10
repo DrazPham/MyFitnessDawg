@@ -14,6 +14,7 @@ import "assets/css/chat/index.css";
 
 
 function Exercise() {
+    const { t } = useTranslation();
     const { i18n } = useTranslation();
     const [userInput, setUserInput] = useState("");
     const [messages, setMessages] = useState([]);
@@ -148,7 +149,7 @@ if (caloriesMatch) {
           <input
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            placeholder="Nhập tên bài tập (VD: chạy 30 phút)..."
+            placeholder={t("placeholderExercise")}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             className="chatInput"
           />

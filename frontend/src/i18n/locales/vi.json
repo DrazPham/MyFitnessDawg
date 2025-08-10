@@ -152,5 +152,7 @@
     "protein": "Đạm",
     "fat": "Chất béo",
     "carbs": "Tinh bột"
-  }
+  },
+"placeholderChat":"Nhập món ăn bạn đã dùng hôm nay",
+"placeholderExercise": "Nhập hoạt động bạn đã thực hiện"
 }

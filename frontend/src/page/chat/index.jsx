@@ -15,6 +15,8 @@ import "assets/css/chat/index.css";
 
 function Chat() {
   const { i18n } = useTranslation();
+  const { t } = useTranslation();
+
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([]);
   useEffect(() => {
@@ -171,7 +173,7 @@ function Chat() {
           <input
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            placeholder="Nhập tin nhắn..."
+            placeholder={t("placeholderChat")}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             className="chatInput"
           />
